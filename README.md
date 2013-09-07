@@ -55,3 +55,33 @@ https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-
 
 
 
+Project changes made to make this work:
+
+Added to: https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/conf/BuildConfig.groovy
+
+	// EXTRAS ADDED TO MAKE THIS EXAMPLE PROJECT WORK
+    compile ":ajaxdependancyselection:0.15"
+    compile ":jquery-ui:1.8.24"
+
+
+
+
+Added to: https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/views/layouts/main.gsp
+
+
+    <g:javascript library="jquery-ui"/>
+    <g:javascript library="jquery"/>
+    
+
+Thats about all that was added, the rest are the domainClasses, (auto generated: controllers,views) and the example gsp's calling the plugin
+
+The jquery-ui should only really be required if you are going to use the auto complete, the g:select stuff does not need it
+
+
+
+
+
+
+
+
+
