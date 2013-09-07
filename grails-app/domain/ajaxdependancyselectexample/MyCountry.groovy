@@ -1,7 +1,6 @@
 package ajaxdependancyselectexample
 
 class MyCountry {
-
 	String countryName
 	String ccode
 	String language

@@ -10,7 +10,10 @@ class MyContinentController {
         redirect(action: "list", params: params)
     }
 	def example() {}
-
+	
+	def norefselectionext() {}
+	def norefselection() {}
+	
 	def example5() {render (view: 'example5', model: [params: params])}
 	
     def list(Integer max) {

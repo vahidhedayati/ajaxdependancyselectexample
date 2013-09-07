@@ -3,6 +3,7 @@ import ajaxdependancyselectexample.Employee
 import ajaxdependancyselectexample.MyCity
 import ajaxdependancyselectexample.MyContinent
 import ajaxdependancyselectexample.MyCountry
+import ajaxdependancyselectexample.Streets
 
 class BootStrap {
 
@@ -23,13 +24,15 @@ class BootStrap {
 		def n2=MyContinent.findOrSaveWhere(continentName: 'Europe')
 		
 		def c1 = MyCountry.findOrSaveWhere(mycontinent: n2, countryName:'United Kingdom',ccode:'GB',language:'')
-		def c2 = MyCountry.findOrSaveWhere(mycontinent: n2, countryName:'France',ccode:'GB',language:'')
+		def c2 = MyCountry.findOrSaveWhere(mycontinent: n2, countryName:'France',ccode:'FR',language:'')
 		def c3 = MyCountry.findOrSaveWhere(mycontinent: n1, countryName:'China',ccode:'CN',language:'')
 		def c4 = MyCountry.findOrSaveWhere(mycontinent: n1, countryName:'India',ccode:'IN',language:'')
 		
 		MyCity.findOrSaveWhere(mycountry:c1,cityName:'Manchester')
-		MyCity.findOrSaveWhere(mycountry:c1,cityName:'London')
-		MyCity.findOrSaveWhere(mycountry:c1,cityName:'Oxford')
+		
+		def cc1=MyCity.findOrSaveWhere(mycountry:c1,cityName:'London')
+		
+		def cc2=MyCity.findOrSaveWhere(mycountry:c1,cityName:'Oxford')
 		
 		MyCity.findOrSaveWhere(mycountry:c2,cityName:'Paris')
 		MyCity.findOrSaveWhere(mycountry:c2,cityName:'Lyon')
@@ -42,7 +45,31 @@ class BootStrap {
 		MyCity.findOrSaveWhere(mycountry:c4,cityName:'Adilabad')
 		MyCity.findOrSaveWhere(mycountry:c4,cityName:'Bairgania')
 		MyCity.findOrSaveWhere(mycountry:c4,cityName:'Chatra')
+		
+	   
+		def gg1=cc1.addToMyborough(actualName:'Lambeth').save(flush:true)
+		
+		def gg2=cc1.addToMyborough(actualName:'Camden').save(flush:true)
+		
+		def gg3=cc2.addToMyborough(actualName:'Banbury').save(flush:true)
+		
+		def gg4=cc2.addToMyborough(actualName:'Witney').save(flush:true)
 	
+		
+		Streets.findOrSaveWhere(localborough: gg1.myborough.toList()[0], streetName: 'Vauxhall Road')
+		Streets.findOrSaveWhere(localborough: gg1.myborough.toList()[0], streetName: 'Wandsworth Road')
+		
+		Streets.findOrSaveWhere(localborough: gg2.myborough.toList()[1], streetName: 'Fleet Road')
+		Streets.findOrSaveWhere(localborough: gg2.myborough.toList()[1], streetName: 'Abbey Road')
+		
+		Streets.findOrSaveWhere(localborough: gg3.myborough.toList()[0], streetName: 'Warwick Road')
+		Streets.findOrSaveWhere(localborough: gg3.myborough.toList()[0], streetName: 'Stratford Road')
+		
+		Streets.findOrSaveWhere(localborough: gg4.myborough.toList()[1], streetName: 'Langdale Road')
+		Streets.findOrSaveWhere(localborough: gg4.myborough.toList()[1], streetName: 'Curbridge Road')
+
+	
+		
 			
 	}
 	def destroy = {

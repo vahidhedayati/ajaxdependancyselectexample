@@ -32,6 +32,17 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${myCityInstance?.myborough}">
+				<li class="fieldcontain">
+					<span id="myborough-label" class="property-label"><g:message code="myCity.myborough.label" default="Myborough" /></span>
+					
+						<g:each in="${myCityInstance.myborough}" var="m">
+						<span class="property-value" aria-labelledby="myborough-label"><g:link controller="myBorough" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${myCityInstance?.mycountry}">
 				<li class="fieldcontain">
 					<span id="mycountry-label" class="property-label"><g:message code="myCity.mycountry.label" default="Mycountry" /></span>

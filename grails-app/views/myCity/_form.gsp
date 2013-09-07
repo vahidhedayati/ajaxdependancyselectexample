@@ -10,6 +10,14 @@
 	<g:textField name="cityName" value="${myCityInstance?.cityName}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: myCityInstance, field: 'myborough', 'error')} ">
+	<label for="myborough">
+		<g:message code="myCity.myborough.label" default="Myborough" />
+		
+	</label>
+	<g:select name="myborough" from="${ajaxdependancyselectexample.MyBorough.list()}" multiple="multiple" optionKey="id" size="5" value="${myCityInstance?.myborough*.id}" class="many-to-many"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: myCityInstance, field: 'mycountry', 'error')} required">
 	<label for="mycountry">
 		<g:message code="myCity.mycountry.label" default="Mycountry" />
