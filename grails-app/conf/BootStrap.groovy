@@ -19,15 +19,18 @@ class BootStrap {
 		Employee.findOrSaveWhere(department:d2, name:'Jim')
 		
 		
-		
+		// Create continents 
 		def n1=MyContinent.findOrSaveWhere(continentName: 'Asia')
 		def n2=MyContinent.findOrSaveWhere(continentName: 'Europe')
 		
+		// Create countries and provde continent map value as above defs
 		def c1 = MyCountry.findOrSaveWhere(mycontinent: n2, countryName:'United Kingdom',ccode:'GB',language:'')
 		def c2 = MyCountry.findOrSaveWhere(mycontinent: n2, countryName:'France',ccode:'FR',language:'')
 		def c3 = MyCountry.findOrSaveWhere(mycontinent: n1, countryName:'China',ccode:'CN',language:'')
 		def c4 = MyCountry.findOrSaveWhere(mycontinent: n1, countryName:'India',ccode:'IN',language:'')
 		
+		
+		// Create cities bind them to the country map and define some to then set up further relationship 
 		MyCity.findOrSaveWhere(mycountry:c1,cityName:'Manchester')
 		
 		def cc1=MyCity.findOrSaveWhere(mycountry:c1,cityName:'London')
@@ -46,7 +49,9 @@ class BootStrap {
 		MyCity.findOrSaveWhere(mycountry:c4,cityName:'Bairgania')
 		MyCity.findOrSaveWhere(mycountry:c4,cityName:'Chatra')
 		
-	   
+	   	// This bit preloads DB with the no reference values of Boroughs 
+	   	// and binds them to the above defined cities cc1 and cc2 :
+	   	//  London and Oxford now have the following boroughs
 		def gg1=cc1.addToMyborough(actualName:'Lambeth').save(flush:true)
 		
 		def gg2=cc1.addToMyborough(actualName:'Camden').save(flush:true)
@@ -55,6 +60,8 @@ class BootStrap {
 		
 		def gg4=cc2.addToMyborough(actualName:'Witney').save(flush:true)
 	
+	
+		// Fill Streets where Boroughs and Streets have a map relationship
 		
 		Streets.findOrSaveWhere(localborough: gg1.myborough.toList()[0], streetName: 'Vauxhall Road')
 		Streets.findOrSaveWhere(localborough: gg1.myborough.toList()[0], streetName: 'Wandsworth Road')
