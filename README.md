@@ -8,7 +8,7 @@ This example grails project uses :
 
 https://github.com/vahidhedayati/ajaxdependancyselection
 
-# Updated to work with ajaxdependancyselection 0.15
+# Updated to work with ajaxdependancyselection 0.16
 
 
 I have added extra options to the main page to give access to other examples and domain classes if new records are required for the test.
@@ -60,7 +60,7 @@ Project changes made to make this work:
 Added to: https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/conf/BuildConfig.groovy
 
 	// EXTRAS ADDED TO MAKE THIS EXAMPLE PROJECT WORK
-    compile ":ajaxdependancyselection:0.15"
+    compile ":ajaxdependancyselection:0.16"
     compile ":jquery-ui:1.8.24"
 
 
