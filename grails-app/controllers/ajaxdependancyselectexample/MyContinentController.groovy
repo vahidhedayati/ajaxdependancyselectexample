@@ -10,7 +10,7 @@ class MyContinentController {
         redirect(action: "list", params: params)
     }
 	def example() {}
-	
+	def example2() {}
 	def norefselectionext() {}
 	def norefselection() {}
 	
