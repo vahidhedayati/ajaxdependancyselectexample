@@ -27,9 +27,22 @@ from command line: (Linux)
 
 Export JAVA_HOME
 
-export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386/jre/
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386/
 
-    The java home will probably be different find out where your JRE folder is and do as above..
+
+    The java home will probably be different find out where your JDK folder is and do as above..
+
+
+Whilst attempting to run this with JRE JAVA_HOME path I got the following:
+
+ 	grails run-app
+	| Compiling 126 source files
+
+	| Compiling 22 source files...
+	| Error Error packaging application: Error occurred processing message bundles: Error starting Sun's native2ascii:  (Use --stacktrace to see the full trace)
+
+so please ensure you point it to jdk rather than jre
+
 
 Unsure but I have multiple grails installed on my desktop so to ensure it is the right version run:
 
