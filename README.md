@@ -8,6 +8,15 @@ This example grails project uses :
 
 https://github.com/vahidhedayati/ajaxdependancyselection
 
+# Updated to work with ajaxdependancyselection 0.15
+
+
+I have added extra options to the main page to give access to other examples and domain classes if new records are required for the test.
+
+All the select examples complete for UK, London and from there on everything has a value, please refer to the BootStrap.groovy where the db is preloaded with giberish
+
+
+
 
 Feel free to reuse as requred..
 
