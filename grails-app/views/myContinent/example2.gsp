@@ -76,7 +76,7 @@ value=''/>
 
 <label>Borough:</label>
 <g:autoCompleteSecondaryNR id="secondarySearch4" 
-name="NAMEOFcityName" 
+name="NAMEOFBorough" 
 domain='ajaxdependancyselectexample.MyCity' 
 domain2='ajaxdependancyselectexample.MyBorough' 
 primarybind='myborough' 
