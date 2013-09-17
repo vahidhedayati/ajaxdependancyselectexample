@@ -33,9 +33,7 @@
     bindid="mycountry.id"
     searchField2='cityName'
     collectField2='id'
-   
-    searchField='countryName'
-    collectField='id'
+
     noSelection="['null': 'Please choose Continent']"
     setId="MyCity11"
     value=''/>
@@ -65,8 +63,7 @@ searchField='cityName'
     searchField2='streetName'
     collectField2='id'
    
-    searchField='cityName'
-    collectField='id'
+
     noSelection="['null': 'Please choose Borough']"
     setId="MyRoad22"
     value=''/>
