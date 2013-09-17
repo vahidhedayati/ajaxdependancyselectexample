@@ -46,7 +46,10 @@ so please ensure you point it to jdk rather than jre
 
 Unsure but I have multiple grails installed on my desktop so to ensure it is the right version run:
 
-    alias grails=/home/user/Downloads/springsource/grails-2.2.3/bin/grails
+    	alias grails=/home/user/Downloads/springsource/grails-2.2.3/bin/grails
+or:
+	export GRAILS_HOME=/home/user/Downloads/springsource/grails-2.2.3
+	
 
 This is my path to grails 2.2.3 binary file
 
