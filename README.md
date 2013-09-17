@@ -48,6 +48,7 @@ Unsure but I have multiple grails installed on my desktop so to ensure it is the
 
     	alias grails=/home/user/Downloads/springsource/grails-2.2.3/bin/grails
 or:
+
 	export GRAILS_HOME=/home/user/Downloads/springsource/grails-2.2.3
 	
 
