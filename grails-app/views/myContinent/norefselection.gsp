@@ -39,8 +39,6 @@
             searchField2='cityName'
             collectField2='id'
 
-            searchField='countryName'
-            collectField='id'
             noSelection="['null': 'Please choose Continent']"
             setId="MyCity11"
             
