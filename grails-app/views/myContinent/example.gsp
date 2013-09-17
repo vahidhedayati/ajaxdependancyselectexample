@@ -51,6 +51,8 @@ Example 2: Triple Select conditions<br><br>
     domain2='ajaxdependancyselectexample.MyCountry'
     bindid="mycontinent.id"
     searchField2='countryName'
+    appendValue='optional_Additional_Value_'
+    appendName='Optional Additional Name'
     collectField2='id'
     noSelection="['null': 'Please choose Continent']" 
     setId="MyCountry11"
@@ -62,8 +64,10 @@ Example 2: Triple Select conditions<br><br>
     searchField2='cityName'
     collectField2='id'
     
-    searchField='countryName'
-    collectField='id'
+     appendValue='optional_Additional_Value_'
+    appendName='Optional Additional Name'
+    
+    
     noSelection="['null': 'Please choose Continent']" 
     setId="MyCity11"
     value=''/>
