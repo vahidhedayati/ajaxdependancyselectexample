@@ -31,11 +31,11 @@ Example1: Dual select condition<br><br>
         searchField2='cityName'
         collectField2='id'
         
-        noSelection="['null': 'Please choose Country']" 
+        noSelection="['': 'Please choose Country']" 
         setId="MyCity1"
         value=''/>
 
-<g:select name="MyCity1" id="MyCity1" optionKey="id" optionValue="cityName" from="[]" noSelection="['null': 'Please choose Country']" />
+<g:select name="MyCity1" id="MyCity1" optionKey="id" optionValue="cityName" from="[]" required="required" noSelection="['': 'Please choose Country']" />
 <input type=submit value=go>  
     </form>
     
@@ -54,7 +54,7 @@ Example 2: Triple Select conditions<br><br>
     appendValue='optional_Additional_Value_'
     appendName='Optional Additional Name'
     collectField2='id'
-    noSelection="['null': 'Please choose Continent']" 
+    noSelection="['': 'Please choose Continent']" 
     setId="MyCountry11"
     value=''/>
 
@@ -68,14 +68,14 @@ Example 2: Triple Select conditions<br><br>
     appendName='Optional Additional Name'
     
     
-    noSelection="['null': 'Please choose Continent']" 
+    noSelection="['': 'Please choose Continent']" 
     setId="MyCity11"
     value=''/>
 
 
     <g:select name="MyCity11" id="MyCity11"  
     optionKey="id" optionValue="name" 
-    from="[]" noSelection="['null': 'Please choose Country']" />
+    from="[]" required="required" noSelection="['': 'Please choose Country']" />
 
     <input type=submit value=go>  
     </form>
@@ -211,13 +211,13 @@ Example 7: Controller actions
 <g:selectController id="selectPrimaryTest22" name="mycontrollers"
 searchField='name'
 collectField='name'
-noSelection="['null': 'Please choose Controller']" 
+noSelection="['': 'Please choose Controller']" 
 setId="ControllerActions"
 value=''/>
 
 <g:select name="myname" id="ControllerActions" 
 optionKey="name" optionValue="name" 
-from="[]" noSelection="['null': 'Please choose controller']" /> 
+from="[]" required="required" noSelection="['': 'Please choose controller']" /> 
 <br> <input type=submit value=go> </form>
 
 
