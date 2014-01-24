@@ -29,7 +29,7 @@
             appendValue='*'
             appendName='All Items'
             
-            noSelection="['null': 'Please choose Continent']"
+            noSelection="['': 'Please choose Continent']"
             setId="MyCountry11"
             value=''/>
 
@@ -39,7 +39,7 @@
             searchField2='cityName'
             collectField2='id'
 
-            noSelection="['null': 'Please choose Continent']"
+            noSelection="['': 'Please choose Continent']"
             setId="MyCity11"
             
             appendValue='*'
@@ -64,7 +64,7 @@
 
 
 
-            noSelection="['null': 'Please choose City']"
+            noSelection="['': 'Please choose City']"
             setId="MyBorough11"
             
             appendValue='*'
@@ -76,7 +76,7 @@
 
             <g:select name="MyBorough11" id="MyBorough11" 
             optionKey="id" optionValue="name"
-            from="[]" noSelection="['null': 'Please choose City']" />
+            from="[]" required="required"  noSelection="['': 'Please choose City']" />
 
         <br> <input type=submit value=go> </form>
         
