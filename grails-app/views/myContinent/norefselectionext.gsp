@@ -24,7 +24,7 @@
     bindid="mycontinent.id"
     searchField2='countryName'
     collectField2='id'
-    noSelection="['null': 'Please choose Continent']"
+    noSelection="['': 'Please choose Continent']"
     setId="MyCountry11"
     value=''/>
 
@@ -34,7 +34,7 @@
     searchField2='cityName'
     collectField2='id'
 
-    noSelection="['null': 'Please choose Continent']"
+    noSelection="['': 'Please choose Continent']"
     setId="MyCity11"
     value=''/>
 
@@ -51,7 +51,7 @@ searchField='cityName'
     
    
   
-    noSelection="['null': 'Please choose City']"
+    noSelection="['': 'Please choose City']"
     setId="MyBorough11"
     value=''/>
 
@@ -64,13 +64,13 @@ searchField='cityName'
     collectField2='id'
    
 
-    noSelection="['null': 'Please choose Borough']"
+    noSelection="['': 'Please choose Borough']"
     setId="MyRoad22"
     value=''/>
     
      <g:select name="MyRoad22" id="MyRoad22"  
     optionKey="id" optionValue="name" 
-    from="[]" noSelection="['null': 'Please choose Borough']" />
+    from="[]" required="required" noSelection="['': 'Please choose Borough']" />
     
     
     
