@@ -1,10 +1,11 @@
+import grails.transaction.Transactional
 import ajaxdependancyselectexample.Departments
 import ajaxdependancyselectexample.Employee
 import ajaxdependancyselectexample.MyCity
 import ajaxdependancyselectexample.MyContinent
 import ajaxdependancyselectexample.MyCountry
 import ajaxdependancyselectexample.Streets
-
+@Transactional
 class BootStrap {
 
     def init = { servletContext ->
@@ -24,10 +25,10 @@ class BootStrap {
 		def n2=MyContinent.findOrSaveWhere(continentName: 'Europe')
 		
 		// Create countries and provde continent map value as above defs
-		def c1 = MyCountry.findOrSaveWhere(mycontinent: n2, countryName:'United Kingdom',ccode:'GB',language:'')
-		def c2 = MyCountry.findOrSaveWhere(mycontinent: n2, countryName:'France',ccode:'FR',language:'')
-		def c3 = MyCountry.findOrSaveWhere(mycontinent: n1, countryName:'China',ccode:'CN',language:'')
-		def c4 = MyCountry.findOrSaveWhere(mycontinent: n1, countryName:'India',ccode:'IN',language:'')
+		def c1 = MyCountry.findOrSaveWhere(mycontinent: n2, countryName:'United Kingdom',ccode:'GB',language:'En')
+		def c2 = MyCountry.findOrSaveWhere(mycontinent: n2, countryName:'France',ccode:'FR',language:'Fr')
+		def c3 = MyCountry.findOrSaveWhere(mycontinent: n1, countryName:'China',ccode:'CN',language:'Zr')
+		def c4 = MyCountry.findOrSaveWhere(mycontinent: n1, countryName:'India',ccode:'IN',language:'Hi')
 		
 		
 		// Create cities bind them to the country map and define some to then set up further relationship 

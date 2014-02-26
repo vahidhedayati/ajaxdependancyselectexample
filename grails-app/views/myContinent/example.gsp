@@ -184,7 +184,7 @@ Example 5 : single Auto complete
 <label>Countries:</label>
 <g:autocomplete id="primarySearch" name="myId"
 domain='ajaxdependancyselectexample.MyCountry'
-searchField='name'
+searchField='countryName'
 collectField='id'
 value=''/>
 <input type=submit value=go> </form>
@@ -198,7 +198,7 @@ Example 6: single Auto complete showCollection
 <g:autocomplete id="primarySearch2" name="myId2"
 action='autocompleteShowCollect'
 domain='ajaxdependancyselectexample.MyCountry'
-searchField='name'
+searchField='countryName'
 collectField='id'
 value=''/>
 
@@ -208,17 +208,33 @@ value=''/>
 Example 7: Controller actions
 
 <form method=post action=example5>
-<g:selectController id="selectPrimaryTest22" name="mycontrollers"
-searchField='name'
-collectField='name'
-noSelection="['': 'Please choose Controller']" 
-setId="ControllerActions"
-value=''/>
 
-<g:select name="myname" id="ControllerActions" 
-optionKey="name" optionValue="name" 
-from="[]" required="required" noSelection="['': 'Please choose controller']" /> 
-<br> <input type=submit value=go> </form>
+<div class="fieldcontain ${hasErrors(bean: permissionsInstance, field: 'controllerName', 'error')} ">
+	<label for="controllerName">
+		<g:message code="permissions.controllerName.label" default="Controller Name" />		
+	</label>
+	<g:selectController id="controllerName" name="controllerName"
+	searchField='name'
+	collectField='name'
+	noSelection="['*': 'All Controllers']" 
+	setId="ControllerActions"
+	value="${permissionsInstance?.controllerName}"/>
+</div>
+
+
+
+
+<div class="fieldcontain ${hasErrors(bean: permissionsInstance, field: 'controllerAction', 'error')} ">
+	<label for="controllerAction">
+		<g:message code="permissions.controllerAction.label" default="Controller Action" />
+	</label>
+	<g:select name="controllerAction" id="ControllerActions" 
+	optionKey="name" optionValue="name"  value="${permissionsInstance?.controllerAction}"
+	from="[]" noSelection="['*': 'All Controller Actions']" /> 
+</div> 
+<br> <input type=submit value=go> 
+
+</form>
 
 
 	</body>
