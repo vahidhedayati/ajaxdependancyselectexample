@@ -21,7 +21,7 @@ https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-
 Feel free to reuse as requred..
 
 
-To run this project you will need grails 2.2.3:
+To run this project you will need grails 2.3.4:
 
 from command line: (Linux)
 
@@ -46,13 +46,13 @@ so please ensure you point it to jdk rather than jre
 
 Unsure but I have multiple grails installed on my desktop so to ensure it is the right version run:
 
-    	alias grails=/home/user/Downloads/springsource/grails-2.2.3/bin/grails
+    	alias grails=/home/user/Downloads/springsource/grails-2.3.4/bin/grails
 or:
 
-	export GRAILS_HOME=/home/user/Downloads/springsource/grails-2.2.3
+	export GRAILS_HOME=/home/user/Downloads/springsource/grails-2.3.4
 	
 
-This is my path to grails 2.2.3 binary file
+This is my path to grails 2.3.4 binary file
 
 Download this app and run:
 
@@ -77,8 +77,8 @@ Project changes made to make this work:
 Added to: https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/conf/BuildConfig.groovy
 
 	// EXTRAS ADDED TO MAKE THIS EXAMPLE PROJECT WORK
-    compile ":ajaxdependancyselection:0.16"
-    compile ":jquery-ui:1.8.24"
+    compile ":ajaxdependancyselection:0.26"
+   	compile ":jquery-ui:1.10.3"
 
 
 
