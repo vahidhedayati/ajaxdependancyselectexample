@@ -17,37 +17,36 @@
 	<a href="#create-myContinent" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 
 		
-<h1>Custom Controller and Action method</h1>
-By adding your own controller and action, you can take it away and produce your own JSON - you will notice not as much input is then required, using a selectPrimary with no bindings or secondary domaiuns etc
-
-<br><br>Choose Europe and France will be the only choice since according to:<br>
- 
-controller="MyContinent"<br>
-action="selectCountries"<br>
-
-It will only list Countries starting with F
-
-    
-
-    
-    
+		
+		<h1>Select then Auto complete</h1>
+This provides a select box which then updates binding to an auto complete box, typically if lets say you have lots of cities and the return be pages and pages for a select box, you could use this function to simply choose country then let user auto complete the city
  <br><br>
 
 
 <form method=post action=example5>
 <label>Continent:</label>
-<g:selectPrimary id="MyContinent2" name="MyContinent2"
+<g:selectAutoComplete 
+	id="MyContinent2" 
+	id2="MyCountry2" 
+	name="MyContinent2"
     domain="ajaxdependancyselectexample.MyContinent"
     searchField="continentName"
     collectField="id"
-
-    controller="MyContinent"
-    action="selectCountries"
+ 	primarybind="mycontinent.id"
+    domain2="ajaxdependancyselectexample.MyCountry"
+    searchField2="countryName"
+    collectField2="id"
+    
+    appendValue=""
+    appendName="values updated"
     noSelection="['': 'Please choose Continent']" 
     setId="MyCountry121"
+    hidden='hidden3'
+    hidden2='hidden4'
     value=""/>
     
- <g:select name="MyCountry" id="MyCountry121"  from="[]" required="required" noSelection="['': 'Please choose Continent']" />
+    
+    
 
 <input type=submit value=go> </form>
 
@@ -56,25 +55,36 @@ It will only list Countries starting with F
 <br><br>
 
 <g:textArea readonly="readonly" name="something" id="1" style="width: 90%; padding: 5px; margin: 20px;">
+
+
 <form method=post action=example5>
 <label>Continent:</label>
-<g:selectPrimary id="MyContinent2" name="MyContinent2"
+<g:selectAutoComplete 
+	id="MyContinent2" 
+	id2="MyCountry2" 
+	name="MyContinent2"
     domain="ajaxdependancyselectexample.MyContinent"
     searchField="continentName"
     collectField="id"
-
-    controller="MyContinent"
-    action="selectCountries"
+ 	primarybind="mycontinent.id"
+    domain2="ajaxdependancyselectexample.MyCountry"
+    searchField2="countryName"
+    collectField2="id"
+    
+    appendValue=""
+    appendName="values updated"
     noSelection="['': 'Please choose Continent']" 
     setId="MyCountry121"
+    hidden='hidden3'
+    hidden2='hidden4'
     value=""/>
     
- <g:select name="MyCountry" id="MyCountry121"  from="[]" required="required" noSelection="['': 'Please choose Continent']" />
+    
+    
 
 <input type=submit value=go> </form>
 
 </g:textArea>
-
 	</body>
 	</html>
 	

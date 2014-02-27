@@ -1,3 +1,5 @@
+/grails
+/org
 /ApplicationResources$_run_closure1.class
 /ApplicationResources$_run_closure1_closure2.class
 /ApplicationResources.class
@@ -78,13 +80,7 @@
 /UrlMappings$__clinit__closure1_closure2_closure3.class
 /UrlMappings.class
 /ajaxdependancyselectexample
+/ajaxdependancyselection
 /com
-/dbdoc
-/grails
-/hibernate
-/hibernate.cfg.xml
-/messages.properties
-/org
 /resources$_run_closure1.class
 /resources.class
-/spring
