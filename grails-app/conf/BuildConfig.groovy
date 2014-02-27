@@ -69,6 +69,10 @@ grails.project.dependency.resolution = {
         //runtime ":cached-resources:1.1"
         //runtime ":yui-minify-resources:0.1.5"
 		compile ":jquery-ui:1.10.3"
+		
+		
+		// Uncomment this to use live plugin
+		compile ":ajaxdependancyselection:0.25"
     }
 }
-grails.plugin.location.'ajaxdependancyselection' = "../ajaxdependancyselection"
+//grails.plugin.location.'ajaxdependancyselection' = "../ajaxdependancyselection"
