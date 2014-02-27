@@ -1,5 +1,7 @@
 package ajaxdependancyselectexample
 
+import grails.converters.JSON
+
 import org.springframework.dao.DataIntegrityViolationException
 
 class MyContinentController {
@@ -13,8 +15,32 @@ class MyContinentController {
 	def example2() {}
 	def norefselectionext() {}
 	def norefselection() {}
-	
+	def customexample() {}
 	def example5() {render (view: 'example5', model: [params: params])}
+	
+	def selectCountries() {
+		if (params.id) {
+			println params
+			String continentName = params.searchField
+			Long continentId = params.id as Long
+			MyContinent continent = MyContinent.get(continentId)
+			
+			/* Either this method or below method which is much shorter
+			def primarySelectList = []
+			MyCountry.findAllByMycontinentAndCountryNameLike(continent, "F%").each {
+				def primaryMap = [:]
+				primaryMap.put('id', it.id)
+				primaryMap.put('name', it.countryName)
+				primarySelectList.add(primaryMap)
+			}
+			render primarySelectList as JSON
+			*/
+			// Shorter method
+			def countries=MyCountry.findAllByMycontinentAndCountryNameLike(continent, "F%")
+			def results = countries.collect {[	'id': it.id, 'name': it.countryName ]}.unique()
+			render results as JSON
+		}
+	}
 	
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
