@@ -21,6 +21,7 @@
 <h1>Example1: Dual select condition</h1><br><br>
 A simple two tier relationship requires a call to selectPrimary with result returned to [] of MyCity1 normal select box<br><br>
 
+
 <form method=post action=example5>
 	
 	<g:selectPrimary id="MyContinent1" name="MyContinent1"
@@ -32,7 +33,8 @@ A simple two tier relationship requires a call to selectPrimary with result retu
         bindid="mycountry.id"
         searchField2='cityName'
         collectField2='id'
-        
+        filter="on"
+        hidden="something"
         noSelection="['': 'Please choose Country']" 
         setId="MyCity1"
         value=''/>

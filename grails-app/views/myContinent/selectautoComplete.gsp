@@ -21,7 +21,7 @@
 		<h1>Select then Auto complete</h1>
 This provides a select box which then updates binding to an auto complete box, typically if lets say you have lots of cities and the return be pages and pages for a select box, you could use this function to simply choose country then let user auto complete the city
  <br><br>
-
+ <div>
 
 <form method=post action=example5>
 <label>Continent:</label>
