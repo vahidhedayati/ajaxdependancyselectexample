@@ -5,6 +5,7 @@ import ajaxdependancyselectexample.Employee
 import ajaxdependancyselectexample.MyCity
 import ajaxdependancyselectexample.MyContinent
 import ajaxdependancyselectexample.MyCountry
+import ajaxdependancyselectexample.MyShops
 import ajaxdependancyselectexample.Streets
 @Transactional
 class BootStrap {
@@ -63,6 +64,11 @@ class BootStrap {
 		def gg4=cc2.addToMyborough(actualName:'Witney').save(flush:true)
 	
 	
+
+		def sc1 = MyShops.findOrSaveWhere(mycity: c1, shopName:'Abc')
+		def sc2 = MyShops.findOrSaveWhere(mycity: c1, shopName:'Cat')
+		def sc3 = MyShops.findOrSaveWhere(mycity: c2, shopName:'Gigo')
+		def sc4 = MyShops.findOrSaveWhere(mycity: c2, shopName:'DayLight')
 		// Fill Streets where Boroughs and Streets have a map relationship
 		
 		Streets.findOrSaveWhere(localborough: gg1.myborough.toList()[0], streetName: 'Vauxhall Road')
