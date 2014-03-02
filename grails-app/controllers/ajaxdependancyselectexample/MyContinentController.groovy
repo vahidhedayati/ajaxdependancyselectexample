@@ -17,6 +17,7 @@ class MyContinentController {
 	def norefselection() {}
 	def customexample() {}
 	def selectautoComplete() {}
+	def filteringExamples() {}
 	def example5() {render (view: 'example5', model: [params: params])}
 	
 	def selectCountries() {

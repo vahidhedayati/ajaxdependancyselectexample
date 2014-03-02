@@ -7,7 +7,7 @@
 			<li><g:link class="list" controller="MyContinent" action="example"><g:message code="Variety" args="[entityName]" /></g:link></li>
 			<li><g:link class="list" controller="MyContinent" action="customexample"><g:message code="custom controller" args="[entityName]" /></g:link></li>
 			<li><g:link class="list" controller="MyContinent" action="selectautoComplete"><g:message code="select+AutoComplete" args="[entityName]" /></g:link></li>
-			
+			<li><g:link class="list" controller="MyContinent" action="filteringExamples"><g:message code="filtering" args="[entityName]" /></g:link></li>
 			</ul>
 </div>		
 <div class="nav" role="navigation">

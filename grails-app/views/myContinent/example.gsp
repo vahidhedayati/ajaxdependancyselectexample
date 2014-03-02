@@ -33,8 +33,7 @@ A simple two tier relationship requires a call to selectPrimary with result retu
         bindid="mycountry.id"
         searchField2='cityName'
         collectField2='id'
-        filter='_ON'
-        hidden="something"
+
         noSelection="['': 'Please choose Country']" 
         setId="MyCity1"
         value=''/>
@@ -74,32 +73,7 @@ A simple two tier relationship requires a call to selectPrimary with result retu
     
  A nested relationship of hasMany and fully dependent relationship with belongsTo in 3<br>    
     
- I have added an extra relationship and then enabled filtering of return results on g:selectPrimary and g:selectSecondary<br>
- 
- 
- So to use this<br>
- 
- 
- In a primary situation:<br>
- 
- <b>
-    filter='_ON'<br>
-    hidden="hiddenNew"<br>
-  </b><br>
-  Simply add the two tags above in<br><br> 
-  
-  To get it working on g:selectSecondary<br><br>
-  
-  
-  	domain='ajaxdependancyselectexample.MyCity'  //Where this is current domainClass
-    searchField='cityName'		//Where this is current SearchField for this domainClass
-    collectField='id'			// where this is current return value for this domainClass
-    filter='_ON'				//Needed to activate tick box
-    filterbind='mycountry.id'	// The actual bindid of this table and your previous selection
-    hidden="hidden6"			//This hidden field to set value
-    prevId="MyCountry11"		//The previousID of your g:selectPrimary or g:selectSecondary - This must exist for all this to work 
-    
-    
+
     <form method=post action=example5>
     
     
@@ -114,8 +88,7 @@ A simple two tier relationship requires a call to selectPrimary with result retu
     appendValue=''
     appendName='Updated'
     collectField2='id'
-    
-    filter='_ON'
+
     hidden="hiddenNew"
     noSelection="['': 'Please choose Continent']" 
     setId="MyCountry11"
@@ -131,15 +104,6 @@ A simple two tier relationship requires a call to selectPrimary with result retu
     bindid="mycountry.id"
     searchField2='cityName'
     collectField2='id'
-    
-    
-    domain='ajaxdependancyselectexample.MyCountry'
-    searchField='countryName'
-    collectField='id'
-    filter='_ON'
-    filterbind='mycontinent.id'
-    hidden="hidden5"
-    prevId="MyContinent2"
     
     
      appendValue=''
@@ -164,23 +128,16 @@ A simple two tier relationship requires a call to selectPrimary with result retu
     collectField2='id'
     appendValue=''
     appendName='Updated'
-    
-    domain='ajaxdependancyselectexample.MyCity'
-    searchField='cityName'
-    collectField='id'
-    filter='_ON'
-    filterbind='mycountry.id'
-    hidden="hidden6"
-    prevId="MyCountry11"
+   
     
     setId="MyShop12"
-	noSelection="['': 'Please choose Country']" 
+	noSelection="['': 'Please choose Country 1111']" 
 	/>
 
 
 
     <g:select name="MyShop12" id="MyShop12"  
-    optionKey="id" optionValue="shopName" 
+    optionKey="id" optionValue="name" 
     from="[]" required="required" noSelection="['': 'Please choose City']" 
     />
     
