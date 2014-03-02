@@ -3,7 +3,7 @@ package ajaxdependancyselectexample
 class Documents {
 
    String name
-	//Departments department
-   static belongsTo=[ department: Departments]
+	Departments department
+   //static belongsTo=[ department: Departments]
 	String toString()  { "${name}"}
 }

@@ -8,6 +8,9 @@
 			<li><g:link class="list" controller="MyContinent" action="customexample"><g:message code="custom controller" args="[entityName]" /></g:link></li>
 			<li><g:link class="list" controller="MyContinent" action="selectautoComplete"><g:message code="select+AutoComplete" args="[entityName]" /></g:link></li>
 			<li><g:link class="list" controller="MyContinent" action="filteringExamples"><g:message code="filtering" args="[entityName]" /></g:link></li>
+			<li><g:link class="list" controller="MyContinent" action="noRefAutoComplete"><g:message code="No Ref Auto Complete" args="[entityName]" /></g:link></li>
+			<li><g:link class="list" controller="MyContinent" action="selectPrimaryNRExample"><g:message code="selectPrimary No Ref" args="[entityName]" /></g:link></li>
+			
 			</ul>
 </div>		
 <div class="nav" role="navigation">
@@ -18,7 +21,7 @@
 			<li><g:link class="list" controller="MyBorough" action="list"><g:message code="Borough" args="[entityName]" /></g:link></li>
 			
 			<li><g:link class="list" controller="Streets" action="list"><g:message code="streets" args="[entityName]" /></g:link></li>
-			<li><g:link class="list" controller="Departments" action="list"><g:message code="depts" args="[entityName]" /></g:link></li>
-			<li><g:link class="list" controller="Employee" action="list"><g:message code="employee" args="[entityName]" /></g:link></li>	
+			<li><g:link class="list" controller="Departments" action="index"><g:message code="depts" args="[entityName]" /></g:link></li>
+			<li><g:link class="list" controller="Employee" action="index"><g:message code="employee" args="[entityName]" /></g:link></li>	
 		</ul>
 </div>

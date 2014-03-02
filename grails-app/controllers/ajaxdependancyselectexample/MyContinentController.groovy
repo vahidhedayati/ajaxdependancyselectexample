@@ -18,6 +18,8 @@ class MyContinentController {
 	def customexample() {}
 	def selectautoComplete() {}
 	def filteringExamples() {}
+	def noRefAutoComplete() {}
+	def selectPrimaryNRExample() {}
 	def example5() {render (view: 'example5', model: [params: params])}
 	
 	def selectCountries() {
