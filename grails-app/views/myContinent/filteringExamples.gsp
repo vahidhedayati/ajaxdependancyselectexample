@@ -26,12 +26,16 @@ Add these two tags to g:selectPrimary
   		filter='_ON'
         hidden="something"
         filterType="E"   Two declarations = filterEnds With E or StartsWith or default not set = wild card
+        filterDisplay="none"		// This set to anything besides all (default value) will ensure nothing is returned with filtering
+        								// by default if nothing put in filter box or ticked etc it will display all records, 
+        								// enable this option and assign some value to stop it from showing records unless matching search
         
+        filterType = Type of filter no definition for wild card S = start of string E ending of string
         so E = Char A =  chinA  S = Char C = Chine  no filterType = Char H = cHina or any other matching chars
         
 </pre>
 
-filterType = Type of filter no definition for wild card S = start of string E ending of string
+
  
 <form method=post action=example5>
 	
@@ -45,7 +49,8 @@ filterType = Type of filter no definition for wild card S = start of string E en
         searchField2='cityName'
         collectField2='id'
         filter='_ON'
-        filterType="E"
+        filterType="S"
+        filterDisplay="none"
         hidden="something"
         noSelection="['': 'Please choose Country']" 
         setId="MyCity11"
@@ -56,7 +61,9 @@ filterType = Type of filter no definition for wild card S = start of string E en
     </form>
 
     
-    
+
+
+ 
   <br><br>
 <g:textArea readonly="readonly" name="something" id="1" style="width: 90%; padding: 5px; margin: 20px;">
 	
@@ -409,10 +416,11 @@ filter2="B" -- this will now filter results of next result set to only match B
     <input type=submit value=go>  
     
   <br><br>
-<g:textArea readonly="readonly" name="something" id="1" style="width: 90%; padding: 5px; margin: 20px;">
-    
 
-<g:selectPrimary id="MyContinent24" name="MyContinent24"
+
+
+<pre>
+&lt;g:selectPrimary id="MyContinent24" name="MyContinent24"
     domain='ajaxdependancyselectexample.MyContinent'
     searchField='continentName'
     collectField='id'
@@ -430,7 +438,7 @@ filter2="B" -- this will now filter results of next result set to only match B
     
     noSelection="['': 'Please choose Continent']" 
     setId="MyCountry114"
-    value="${params.MyContinent2}"/>
+    value="${params.MyContinent2}"/&gt;
 
 
     
@@ -438,7 +446,7 @@ filter2="B" -- this will now filter results of next result set to only match B
 
 
 
-<g:selectSecondary id="MyCountry114" name="MyCountry114"
+&lt;g:selectSecondary id="MyCountry114" name="MyCountry114"
 	domain2='ajaxdependancyselectexample.MyCity'
     bindid="mycountry.id"
     searchField2='cityName'
@@ -461,13 +469,13 @@ filter2="B" -- this will now filter results of next result set to only match B
     
     noSelection="['': 'Please choose Continent']" 
     setId="MyCity114"
-    value="${params.MyCountry114}"/>
+    value="${params.MyCountry114}"/&gt;
 
 
 
 
 
-    <g:selectSecondary name="MyCity114" id="MyCity114"  
+    &lt;g:selectSecondary name="MyCity114" id="MyCity114"  
        
     domain2='ajaxdependancyselectexample.MyShops'
     bindid="mycity.id"
@@ -479,20 +487,19 @@ filter2="B" -- this will now filter results of next result set to only match B
     
     setId="MyShop124"
 	noSelection="['': 'Please choose Country 1111']" 
-	/>
+	/&gt;
 
 
 
-    <g:select name="MyShop124" id="MyShop124"  
+    &lt;g:select name="MyShop124" id="MyShop124"  
     optionKey="id" optionValue="name" 
     from="[]" required="required" noSelection="['': 'Please choose City']" 
-    />
+    /&gt;
     
 
-    <input type=submit value=go>  
+    &lt;input type=submit value=go&gt;  
 
- </g:textArea>
-    
+</pre>
     
 
 
@@ -589,10 +596,9 @@ It might be a case where we want to filter all results against a db result or so
     <input type=submit value=go>  
     
   <br><br>
-<g:textArea readonly="readonly" name="something" id="1" style="width: 90%; padding: 5px; margin: 20px;">
- 
-    
-<g:selectPrimary id="MyContinent25" name="MyContinent25"
+<pre>
+
+&lt;g:selectPrimary id="MyContinent25" name="MyContinent25"
     domain='ajaxdependancyselectexample.MyContinent'
     searchField='continentName'
     collectField='id'
@@ -611,14 +617,12 @@ It might be a case where we want to filter all results against a db result or so
     filterType2="S"
     noSelection="['': 'Please choose Continent']" 
     setId="MyCountry115"
-    value="${params.MyContinent2}"/>
+    value="${params.MyContinent2}"/&gt;
 
 
 
 
-
-
-<g:selectSecondary id="MyCountry115" name="MyCountry115"
+&lt;g:selectSecondary id="MyCountry115" name="MyCountry115"
 	domain2='ajaxdependancyselectexample.MyCity'
     bindid="mycountry.id"
     searchField2='cityName'
@@ -636,13 +640,13 @@ It might be a case where we want to filter all results against a db result or so
     
     noSelection="['': 'Please choose Continent']" 
     setId="MyCity115"
-    value="${params.MyCountry115}"/>
+    value="${params.MyCountry115}"/&gt;
 
 
 
 
 
-    <g:selectSecondary name="MyCity115" id="MyCity115"  
+    &lt;g:selectSecondary name="MyCity115" id="MyCity115"  
     
     
     
@@ -657,22 +661,30 @@ It might be a case where we want to filter all results against a db result or so
     hidden="hiddenNew55552"
     setId="MyShop125"
 	noSelection="['': 'Please choose Country 1111']" 
-	/>
+	/&gt;
 
 
 
-    <g:select name="MyShop12" id="MyShop125"  
+    &lt;g:select name="MyShop12" id="MyShop125"  
     optionKey="id" optionValue="shopName" 
     from="[]" required="required" noSelection="['': 'Please choose City']" 
-    />
+    /&gt;
     
 
-    <input type=submit value=go>  
- </g:textArea>
+    &lt;input type=submit value=go&gt;  
     
 
 
+</pre>
 
+
+
+
+
+  <br><br>
+	</body>
+	</html>
+	
 
   <br><br>
 	</body>

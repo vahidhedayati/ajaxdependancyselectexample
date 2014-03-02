@@ -1,102 +1,104 @@
 package ajaxdependancyselectexample
 
-import org.springframework.dao.DataIntegrityViolationException
 
+
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class EmployeeController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index() {
-        redirect(action: "list", params: params)
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Employee.list(params), model:[employeeInstanceCount: Employee.count()]
     }
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [employeeInstanceList: Employee.list(params), employeeInstanceTotal: Employee.count()]
+    def show(Employee employeeInstance) {
+        respond employeeInstance
     }
 
     def create() {
-        [employeeInstance: new Employee(params)]
+        respond new Employee(params)
     }
 
-    def save() {
-        def employeeInstance = new Employee(params)
-        if (!employeeInstance.save(flush: true)) {
-            render(view: "create", model: [employeeInstance: employeeInstance])
+    @Transactional
+    def save(Employee employeeInstance) {
+        if (employeeInstance == null) {
+            notFound()
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'employee.label', default: 'Employee'), employeeInstance.id])
-        redirect(action: "show", id: employeeInstance.id)
-    }
-
-    def show(Long id) {
-        def employeeInstance = Employee.get(id)
-        if (!employeeInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'employee.label', default: 'Employee'), id])
-            redirect(action: "list")
+        if (employeeInstance.hasErrors()) {
+            respond employeeInstance.errors, view:'create'
             return
         }
 
-        [employeeInstance: employeeInstance]
-    }
+        employeeInstance.save flush:true
 
-    def edit(Long id) {
-        def employeeInstance = Employee.get(id)
-        if (!employeeInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'employee.label', default: 'Employee'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [employeeInstance: employeeInstance]
-    }
-
-    def update(Long id, Long version) {
-        def employeeInstance = Employee.get(id)
-        if (!employeeInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'employee.label', default: 'Employee'), id])
-            redirect(action: "list")
-            return
-        }
-
-        if (version != null) {
-            if (employeeInstance.version > version) {
-                employeeInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'employee.label', default: 'Employee')] as Object[],
-                          "Another user has updated this Employee while you were editing")
-                render(view: "edit", model: [employeeInstance: employeeInstance])
-                return
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'employeeInstance.label', default: 'Employee'), employeeInstance.id])
+                redirect employeeInstance
             }
+            '*' { respond employeeInstance, [status: CREATED] }
         }
-
-        employeeInstance.properties = params
-
-        if (!employeeInstance.save(flush: true)) {
-            render(view: "edit", model: [employeeInstance: employeeInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'employee.label', default: 'Employee'), employeeInstance.id])
-        redirect(action: "show", id: employeeInstance.id)
     }
 
-    def delete(Long id) {
-        def employeeInstance = Employee.get(id)
-        if (!employeeInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'employee.label', default: 'Employee'), id])
-            redirect(action: "list")
+    def edit(Employee employeeInstance) {
+        respond employeeInstance
+    }
+
+    @Transactional
+    def update(Employee employeeInstance) {
+        if (employeeInstance == null) {
+            notFound()
             return
         }
 
-        try {
-            employeeInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'employee.label', default: 'Employee'), id])
-            redirect(action: "list")
+        if (employeeInstance.hasErrors()) {
+            respond employeeInstance.errors, view:'edit'
+            return
         }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'employee.label', default: 'Employee'), id])
-            redirect(action: "show", id: id)
+
+        employeeInstance.save flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Employee.label', default: 'Employee'), employeeInstance.id])
+                redirect employeeInstance
+            }
+            '*'{ respond employeeInstance, [status: OK] }
+        }
+    }
+
+    @Transactional
+    def delete(Employee employeeInstance) {
+
+        if (employeeInstance == null) {
+            notFound()
+            return
+        }
+
+        employeeInstance.delete flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Employee.label', default: 'Employee'), employeeInstance.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
+    }
+
+    protected void notFound() {
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'employeeInstance.label', default: 'Employee'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

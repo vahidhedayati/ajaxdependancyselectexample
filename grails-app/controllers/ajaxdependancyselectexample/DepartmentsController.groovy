@@ -1,102 +1,104 @@
 package ajaxdependancyselectexample
 
-import org.springframework.dao.DataIntegrityViolationException
 
+
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class DepartmentsController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index() {
-        redirect(action: "list", params: params)
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Departments.list(params), model:[departmentsInstanceCount: Departments.count()]
     }
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [departmentsInstanceList: Departments.list(params), departmentsInstanceTotal: Departments.count()]
+    def show(Departments departmentsInstance) {
+        respond departmentsInstance
     }
 
     def create() {
-        [departmentsInstance: new Departments(params)]
+        respond new Departments(params)
     }
 
-    def save() {
-        def departmentsInstance = new Departments(params)
-        if (!departmentsInstance.save(flush: true)) {
-            render(view: "create", model: [departmentsInstance: departmentsInstance])
+    @Transactional
+    def save(Departments departmentsInstance) {
+        if (departmentsInstance == null) {
+            notFound()
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'departments.label', default: 'Departments'), departmentsInstance.id])
-        redirect(action: "show", id: departmentsInstance.id)
-    }
-
-    def show(Long id) {
-        def departmentsInstance = Departments.get(id)
-        if (!departmentsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'departments.label', default: 'Departments'), id])
-            redirect(action: "list")
+        if (departmentsInstance.hasErrors()) {
+            respond departmentsInstance.errors, view:'create'
             return
         }
 
-        [departmentsInstance: departmentsInstance]
-    }
+        departmentsInstance.save flush:true
 
-    def edit(Long id) {
-        def departmentsInstance = Departments.get(id)
-        if (!departmentsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'departments.label', default: 'Departments'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [departmentsInstance: departmentsInstance]
-    }
-
-    def update(Long id, Long version) {
-        def departmentsInstance = Departments.get(id)
-        if (!departmentsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'departments.label', default: 'Departments'), id])
-            redirect(action: "list")
-            return
-        }
-
-        if (version != null) {
-            if (departmentsInstance.version > version) {
-                departmentsInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'departments.label', default: 'Departments')] as Object[],
-                          "Another user has updated this Departments while you were editing")
-                render(view: "edit", model: [departmentsInstance: departmentsInstance])
-                return
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'departmentsInstance.label', default: 'Departments'), departmentsInstance.id])
+                redirect departmentsInstance
             }
+            '*' { respond departmentsInstance, [status: CREATED] }
         }
-
-        departmentsInstance.properties = params
-
-        if (!departmentsInstance.save(flush: true)) {
-            render(view: "edit", model: [departmentsInstance: departmentsInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'departments.label', default: 'Departments'), departmentsInstance.id])
-        redirect(action: "show", id: departmentsInstance.id)
     }
 
-    def delete(Long id) {
-        def departmentsInstance = Departments.get(id)
-        if (!departmentsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'departments.label', default: 'Departments'), id])
-            redirect(action: "list")
+    def edit(Departments departmentsInstance) {
+        respond departmentsInstance
+    }
+
+    @Transactional
+    def update(Departments departmentsInstance) {
+        if (departmentsInstance == null) {
+            notFound()
             return
         }
 
-        try {
-            departmentsInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'departments.label', default: 'Departments'), id])
-            redirect(action: "list")
+        if (departmentsInstance.hasErrors()) {
+            respond departmentsInstance.errors, view:'edit'
+            return
         }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'departments.label', default: 'Departments'), id])
-            redirect(action: "show", id: id)
+
+        departmentsInstance.save flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Departments.label', default: 'Departments'), departmentsInstance.id])
+                redirect departmentsInstance
+            }
+            '*'{ respond departmentsInstance, [status: OK] }
+        }
+    }
+
+    @Transactional
+    def delete(Departments departmentsInstance) {
+
+        if (departmentsInstance == null) {
+            notFound()
+            return
+        }
+
+        departmentsInstance.delete flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Departments.label', default: 'Departments'), departmentsInstance.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
+    }
+
+    protected void notFound() {
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'departmentsInstance.label', default: 'Departments'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

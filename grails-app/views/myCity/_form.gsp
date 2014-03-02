@@ -26,3 +26,20 @@
 	<g:select id="mycountry" name="mycountry.id" from="${ajaxdependancyselectexample.MyCountry.list()}" optionKey="id" required="" value="${myCityInstance?.mycountry?.id}" class="many-to-one"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: myCityInstance, field: 'shops', 'error')} ">
+	<label for="shops">
+		<g:message code="myCity.shops.label" default="Shops" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${myCityInstance?.shops?}" var="s">
+    <li><g:link controller="myShops" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="myShops" action="create" params="['myCity.id': myCityInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'myShops.label', default: 'MyShops')])}</g:link>
+</li>
+</ul>
+
+</div>
+

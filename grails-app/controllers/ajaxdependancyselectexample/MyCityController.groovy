@@ -1,102 +1,104 @@
 package ajaxdependancyselectexample
 
-import org.springframework.dao.DataIntegrityViolationException
 
+
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class MyCityController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index() {
-        redirect(action: "list", params: params)
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond MyCity.list(params), model:[myCityInstanceCount: MyCity.count()]
     }
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [myCityInstanceList: MyCity.list(params), myCityInstanceTotal: MyCity.count()]
+    def show(MyCity myCityInstance) {
+        respond myCityInstance
     }
 
     def create() {
-        [myCityInstance: new MyCity(params)]
+        respond new MyCity(params)
     }
 
-    def save() {
-        def myCityInstance = new MyCity(params)
-        if (!myCityInstance.save(flush: true)) {
-            render(view: "create", model: [myCityInstance: myCityInstance])
+    @Transactional
+    def save(MyCity myCityInstance) {
+        if (myCityInstance == null) {
+            notFound()
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'myCity.label', default: 'MyCity'), myCityInstance.id])
-        redirect(action: "show", id: myCityInstance.id)
-    }
-
-    def show(Long id) {
-        def myCityInstance = MyCity.get(id)
-        if (!myCityInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'myCity.label', default: 'MyCity'), id])
-            redirect(action: "list")
+        if (myCityInstance.hasErrors()) {
+            respond myCityInstance.errors, view:'create'
             return
         }
 
-        [myCityInstance: myCityInstance]
-    }
+        myCityInstance.save flush:true
 
-    def edit(Long id) {
-        def myCityInstance = MyCity.get(id)
-        if (!myCityInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'myCity.label', default: 'MyCity'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [myCityInstance: myCityInstance]
-    }
-
-    def update(Long id, Long version) {
-        def myCityInstance = MyCity.get(id)
-        if (!myCityInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'myCity.label', default: 'MyCity'), id])
-            redirect(action: "list")
-            return
-        }
-
-        if (version != null) {
-            if (myCityInstance.version > version) {
-                myCityInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'myCity.label', default: 'MyCity')] as Object[],
-                          "Another user has updated this MyCity while you were editing")
-                render(view: "edit", model: [myCityInstance: myCityInstance])
-                return
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'myCityInstance.label', default: 'MyCity'), myCityInstance.id])
+                redirect myCityInstance
             }
+            '*' { respond myCityInstance, [status: CREATED] }
         }
-
-        myCityInstance.properties = params
-
-        if (!myCityInstance.save(flush: true)) {
-            render(view: "edit", model: [myCityInstance: myCityInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'myCity.label', default: 'MyCity'), myCityInstance.id])
-        redirect(action: "show", id: myCityInstance.id)
     }
 
-    def delete(Long id) {
-        def myCityInstance = MyCity.get(id)
-        if (!myCityInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'myCity.label', default: 'MyCity'), id])
-            redirect(action: "list")
+    def edit(MyCity myCityInstance) {
+        respond myCityInstance
+    }
+
+    @Transactional
+    def update(MyCity myCityInstance) {
+        if (myCityInstance == null) {
+            notFound()
             return
         }
 
-        try {
-            myCityInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'myCity.label', default: 'MyCity'), id])
-            redirect(action: "list")
+        if (myCityInstance.hasErrors()) {
+            respond myCityInstance.errors, view:'edit'
+            return
         }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'myCity.label', default: 'MyCity'), id])
-            redirect(action: "show", id: id)
+
+        myCityInstance.save flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'MyCity.label', default: 'MyCity'), myCityInstance.id])
+                redirect myCityInstance
+            }
+            '*'{ respond myCityInstance, [status: OK] }
+        }
+    }
+
+    @Transactional
+    def delete(MyCity myCityInstance) {
+
+        if (myCityInstance == null) {
+            notFound()
+            return
+        }
+
+        myCityInstance.delete flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'MyCity.label', default: 'MyCity'), myCityInstance.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
+    }
+
+    protected void notFound() {
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'myCityInstance.label', default: 'MyCity'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

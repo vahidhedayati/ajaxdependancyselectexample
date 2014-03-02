@@ -1,102 +1,104 @@
 package ajaxdependancyselectexample
 
-import org.springframework.dao.DataIntegrityViolationException
 
+
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class StreetsController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index() {
-        redirect(action: "list", params: params)
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Streets.list(params), model:[streetsInstanceCount: Streets.count()]
     }
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [streetsInstanceList: Streets.list(params), streetsInstanceTotal: Streets.count()]
+    def show(Streets streetsInstance) {
+        respond streetsInstance
     }
 
     def create() {
-        [streetsInstance: new Streets(params)]
+        respond new Streets(params)
     }
 
-    def save() {
-        def streetsInstance = new Streets(params)
-        if (!streetsInstance.save(flush: true)) {
-            render(view: "create", model: [streetsInstance: streetsInstance])
+    @Transactional
+    def save(Streets streetsInstance) {
+        if (streetsInstance == null) {
+            notFound()
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'streets.label', default: 'Streets'), streetsInstance.id])
-        redirect(action: "show", id: streetsInstance.id)
-    }
-
-    def show(Long id) {
-        def streetsInstance = Streets.get(id)
-        if (!streetsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'streets.label', default: 'Streets'), id])
-            redirect(action: "list")
+        if (streetsInstance.hasErrors()) {
+            respond streetsInstance.errors, view:'create'
             return
         }
 
-        [streetsInstance: streetsInstance]
-    }
+        streetsInstance.save flush:true
 
-    def edit(Long id) {
-        def streetsInstance = Streets.get(id)
-        if (!streetsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'streets.label', default: 'Streets'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [streetsInstance: streetsInstance]
-    }
-
-    def update(Long id, Long version) {
-        def streetsInstance = Streets.get(id)
-        if (!streetsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'streets.label', default: 'Streets'), id])
-            redirect(action: "list")
-            return
-        }
-
-        if (version != null) {
-            if (streetsInstance.version > version) {
-                streetsInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'streets.label', default: 'Streets')] as Object[],
-                          "Another user has updated this Streets while you were editing")
-                render(view: "edit", model: [streetsInstance: streetsInstance])
-                return
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'streetsInstance.label', default: 'Streets'), streetsInstance.id])
+                redirect streetsInstance
             }
+            '*' { respond streetsInstance, [status: CREATED] }
         }
-
-        streetsInstance.properties = params
-
-        if (!streetsInstance.save(flush: true)) {
-            render(view: "edit", model: [streetsInstance: streetsInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'streets.label', default: 'Streets'), streetsInstance.id])
-        redirect(action: "show", id: streetsInstance.id)
     }
 
-    def delete(Long id) {
-        def streetsInstance = Streets.get(id)
-        if (!streetsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'streets.label', default: 'Streets'), id])
-            redirect(action: "list")
+    def edit(Streets streetsInstance) {
+        respond streetsInstance
+    }
+
+    @Transactional
+    def update(Streets streetsInstance) {
+        if (streetsInstance == null) {
+            notFound()
             return
         }
 
-        try {
-            streetsInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'streets.label', default: 'Streets'), id])
-            redirect(action: "list")
+        if (streetsInstance.hasErrors()) {
+            respond streetsInstance.errors, view:'edit'
+            return
         }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'streets.label', default: 'Streets'), id])
-            redirect(action: "show", id: id)
+
+        streetsInstance.save flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Streets.label', default: 'Streets'), streetsInstance.id])
+                redirect streetsInstance
+            }
+            '*'{ respond streetsInstance, [status: OK] }
+        }
+    }
+
+    @Transactional
+    def delete(Streets streetsInstance) {
+
+        if (streetsInstance == null) {
+            notFound()
+            return
+        }
+
+        streetsInstance.delete flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Streets.label', default: 'Streets'), streetsInstance.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
+    }
+
+    protected void notFound() {
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'streetsInstance.label', default: 'Streets'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

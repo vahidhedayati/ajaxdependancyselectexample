@@ -1,102 +1,104 @@
 package ajaxdependancyselectexample
 
-import org.springframework.dao.DataIntegrityViolationException
 
+
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class MyBoroughController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index() {
-        redirect(action: "list", params: params)
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond MyBorough.list(params), model:[myBoroughInstanceCount: MyBorough.count()]
     }
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [myBoroughInstanceList: MyBorough.list(params), myBoroughInstanceTotal: MyBorough.count()]
+    def show(MyBorough myBoroughInstance) {
+        respond myBoroughInstance
     }
 
     def create() {
-        [myBoroughInstance: new MyBorough(params)]
+        respond new MyBorough(params)
     }
 
-    def save() {
-        def myBoroughInstance = new MyBorough(params)
-        if (!myBoroughInstance.save(flush: true)) {
-            render(view: "create", model: [myBoroughInstance: myBoroughInstance])
+    @Transactional
+    def save(MyBorough myBoroughInstance) {
+        if (myBoroughInstance == null) {
+            notFound()
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'myBorough.label', default: 'MyBorough'), myBoroughInstance.id])
-        redirect(action: "show", id: myBoroughInstance.id)
-    }
-
-    def show(Long id) {
-        def myBoroughInstance = MyBorough.get(id)
-        if (!myBoroughInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'myBorough.label', default: 'MyBorough'), id])
-            redirect(action: "list")
+        if (myBoroughInstance.hasErrors()) {
+            respond myBoroughInstance.errors, view:'create'
             return
         }
 
-        [myBoroughInstance: myBoroughInstance]
-    }
+        myBoroughInstance.save flush:true
 
-    def edit(Long id) {
-        def myBoroughInstance = MyBorough.get(id)
-        if (!myBoroughInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'myBorough.label', default: 'MyBorough'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [myBoroughInstance: myBoroughInstance]
-    }
-
-    def update(Long id, Long version) {
-        def myBoroughInstance = MyBorough.get(id)
-        if (!myBoroughInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'myBorough.label', default: 'MyBorough'), id])
-            redirect(action: "list")
-            return
-        }
-
-        if (version != null) {
-            if (myBoroughInstance.version > version) {
-                myBoroughInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'myBorough.label', default: 'MyBorough')] as Object[],
-                          "Another user has updated this MyBorough while you were editing")
-                render(view: "edit", model: [myBoroughInstance: myBoroughInstance])
-                return
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'myBoroughInstance.label', default: 'MyBorough'), myBoroughInstance.id])
+                redirect myBoroughInstance
             }
+            '*' { respond myBoroughInstance, [status: CREATED] }
         }
-
-        myBoroughInstance.properties = params
-
-        if (!myBoroughInstance.save(flush: true)) {
-            render(view: "edit", model: [myBoroughInstance: myBoroughInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'myBorough.label', default: 'MyBorough'), myBoroughInstance.id])
-        redirect(action: "show", id: myBoroughInstance.id)
     }
 
-    def delete(Long id) {
-        def myBoroughInstance = MyBorough.get(id)
-        if (!myBoroughInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'myBorough.label', default: 'MyBorough'), id])
-            redirect(action: "list")
+    def edit(MyBorough myBoroughInstance) {
+        respond myBoroughInstance
+    }
+
+    @Transactional
+    def update(MyBorough myBoroughInstance) {
+        if (myBoroughInstance == null) {
+            notFound()
             return
         }
 
-        try {
-            myBoroughInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'myBorough.label', default: 'MyBorough'), id])
-            redirect(action: "list")
+        if (myBoroughInstance.hasErrors()) {
+            respond myBoroughInstance.errors, view:'edit'
+            return
         }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'myBorough.label', default: 'MyBorough'), id])
-            redirect(action: "show", id: id)
+
+        myBoroughInstance.save flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'MyBorough.label', default: 'MyBorough'), myBoroughInstance.id])
+                redirect myBoroughInstance
+            }
+            '*'{ respond myBoroughInstance, [status: OK] }
+        }
+    }
+
+    @Transactional
+    def delete(MyBorough myBoroughInstance) {
+
+        if (myBoroughInstance == null) {
+            notFound()
+            return
+        }
+
+        myBoroughInstance.delete flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'MyBorough.label', default: 'MyBorough'), myBoroughInstance.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
+    }
+
+    protected void notFound() {
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'myBoroughInstance.label', default: 'MyBorough'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }
