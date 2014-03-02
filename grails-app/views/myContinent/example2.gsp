@@ -90,22 +90,25 @@ value=''/>
 
 
 <br><br>
-<g:textArea readonly="readonly" name="something" id="1" style="width: 90%; padding: 5px; margin: 20px;">
-<form method=post action=example5>
-<label>Continent:</label>
-<g:autoCompletePrimary id="primarySearch1"  
+
+
+<pre>
+
+&lt;form method=post action=example5&gt;
+&lt;label&gt;Continent:&lt;/label&gt;
+&lt;g:autoCompletePrimary id="primarySearch1"  
 name="NAMEOFcontinentName"
 domain='ajaxdependancyselectexample.MyContinent'
 searchField='continentName'
 collectField='id'
 setId="secondarySearch2"
 hidden='hidden3'
-value=''/>
+value=''/&gt;
 
-<input type=hidden id="hidden3" name="continentId" value=""/>
+&lt;input type=hidden id="hidden3" name="continentId" value=""/&gt;
 
-<label>Country:</label> 
-<g:autoCompleteSecondary id="secondarySearch2" 
+&lt;label&gt;Country:&lt;/label&gt; 
+&lt;g:autoCompleteSecondary id="secondarySearch2" 
 name="NAMEOFcountryName" 
 domain='ajaxdependancyselectexample.MyCountry' 
 primarybind='mycontinent.id' 
@@ -114,12 +117,12 @@ hidden2='hidden4'
 searchField='countryName' 
 collectField='id'
 setId="secondarySearch3" 
-value=''/>
+value=''/&gt;
 
-<input type=hidden id="hidden4" name="countryId" value=""/>
+&lt;input type=hidden id="hidden4" name="countryId" value=""/&gt;
 
-<label>City:</label>
-<g:autoCompleteSecondary id="secondarySearch3" 
+&lt;label&gt;City:&lt;/label&gt;
+&lt;g:autoCompleteSecondary id="secondarySearch3" 
 name="NAMEOFcityName" 
 domain='ajaxdependancyselectexample.MyCity' 
 primarybind='mycountry.id' 
@@ -128,12 +131,12 @@ hidden2='hidden5'
 searchField='cityName' 
 collectField='id' 
 setId="secondarySearch4"
-value=''/>
+value=''/&gt;
 
-<input type=hidden id="hidden5" name="cityId" value=""/>
+&lt;input type=hidden id="hidden5" name="cityId" value=""/&gt;
 
-<label>Borough:</label>
-<g:autoCompleteSecondaryNR id="secondarySearch4" 
+&lt;label&gt;Borough:&lt;/label&gt;
+&lt;g:autoCompleteSecondaryNR id="secondarySearch4" 
 name="NAMEOFBorough" 
 domain='ajaxdependancyselectexample.MyCity' 
 domain2='ajaxdependancyselectexample.MyBorough' 
@@ -143,12 +146,13 @@ hidden2='hidden6'
 searchField='actualName' 
 collectField='id' 
 
-value=''/>
+value=''/&gt;
 
-<input type=hidden id="hidden6" name="BoroughID" value=""/>
+&lt;input type=hidden id="hidden6" name="BoroughID" value=""/&gt;
 
-<input type=submit value=go> </form>
-</g:textArea>
+&lt;input type=submit value=go&gt; &lt;/form&gt;
+
+</pre>
 
 	</body>
 	</html>

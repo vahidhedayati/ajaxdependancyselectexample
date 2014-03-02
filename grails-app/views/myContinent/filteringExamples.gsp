@@ -65,9 +65,11 @@ Add these two tags to g:selectPrimary
 
  
   <br><br>
-<g:textArea readonly="readonly" name="something" id="1" style="width: 90%; padding: 5px; margin: 20px;">
+
+
+<pre>
 	
-	<g:selectPrimary id="MyCountry11" name="MyCountry11"
+	&lt;g:selectPrimary id="MyCountry11" name="MyCountry11"
         domain='ajaxdependancyselectexample.MyCountry'
         searchField='countryName'
         collectField='id'
@@ -81,13 +83,13 @@ Add these two tags to g:selectPrimary
         hidden="something"
         noSelection="['': 'Please choose Country']" 
         setId="MyCity11"
-        value=''/>
+        value=''/&gt;
 
-<g:select name="MyCity11" id="MyCity11" optionKey="id" optionValue="cityName" from="[]" required="required" noSelection="['': 'Please choose Country']" />
-<input type=submit value=go>  
+&lt;g:select name="MyCity11" id="MyCity11" optionKey="id" optionValue="cityName" from="[]" required="required" noSelection="['': 'Please choose Country']" /&gt;
+&lt;input type=submit value=go&gt;  
 
-</g:textArea>
 
+</pre>
   
     <br><br>
     
@@ -216,12 +218,14 @@ Add these two tags to g:selectPrimary
     </form>
 
   <br><br>
-<g:textArea readonly="readonly" name="something" id="1" style="width: 90%; padding: 5px; margin: 20px;">
+  
+  
+<pre>
 
 
     
     
-<g:selectPrimary id="MyContinent22" name="MyContinent22"
+&lt;g:selectPrimary id="MyContinent22" name="MyContinent22"
     domain='ajaxdependancyselectexample.MyContinent'
     searchField='continentName'
     collectField='id'
@@ -237,14 +241,14 @@ Add these two tags to g:selectPrimary
     hidden="hiddenNew11"
     noSelection="['': 'Please choose Continent']" 
     setId="MyCountry112"
-    value="${params.MyContinent2}"/>
+    value="${params.MyContinent2}"/&gt;
 
 
 
 
 
 
-<g:selectSecondary id="MyCountry112" name="MyCountry112"
+&lt;g:selectSecondary id="MyCountry112" name="MyCountry112"
 	domain2='ajaxdependancyselectexample.MyCity'
     bindid="mycountry.id"
     searchField2='cityName'
@@ -267,13 +271,13 @@ Add these two tags to g:selectPrimary
     
     noSelection="['': 'Please choose Continent']" 
     setId="MyCity112"
-    value="${params.MyCountry11}"/>
+    value="${params.MyCountry11}"/&gt;
 
 
 
 
 
-    <g:selectSecondary name="MyCity112" id="MyCity112"  
+    &lt;g:selectSecondary name="MyCity112" id="MyCity112"  
     optionKey="id" optionValue="name"
     
     
@@ -296,20 +300,19 @@ Add these two tags to g:selectPrimary
     
     setId="MyShop1122"
 	noSelection="['': 'Please choose Country 1111']" 
-	/>
+	/&gt;
 
 
 
-    <g:select name="MyShop1122" id="MyShop1122"  
+    &lt;g:select name="MyShop1122" id="MyShop1122"  
     optionKey="id" optionValue="name" 
     from="[]" required="required" noSelection="['': 'Please choose City']" 
-    />
+    /&gt;
     
 
-    <input type=submit value=go>  
+    &lt;input type=submit value=go&gt;  
     
-    
-</g:textArea>
+</pre>
 
 
 

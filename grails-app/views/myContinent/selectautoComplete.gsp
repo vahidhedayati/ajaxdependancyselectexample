@@ -54,12 +54,11 @@ This provides a select box which then updates binding to an auto complete box, t
 
 <br><br>
 
-<g:textArea readonly="readonly" name="something" id="1" style="width: 90%; padding: 5px; margin: 20px;">
+<pre>
 
-
-<form method=post action=example5>
-<label>Continent:</label>
-<g:selectAutoComplete 
+&lt;form method=post action=example5&gt;
+&lt;label&gt;Continent:&lt;/label&gt;
+&lt;g:selectAutoComplete 
 	id="MyContinent2" 
 	id2="MyCountry2" 
 	name="MyContinent2"
@@ -77,14 +76,14 @@ This provides a select box which then updates binding to an auto complete box, t
     setId="MyCountry121"
     hidden='hidden3'
     hidden2='hidden4'
-    value=""/>
+    value=""/&gt;
     
     
     
 
-<input type=submit value=go> </form>
+&lt;input type=submit value=go&gt; &lt;/form&gt;
 
-</g:textArea>
+</pre>
 	</body>
 	</html>
 	

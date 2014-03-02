@@ -85,11 +85,10 @@ Try Europe United Kingdom and London and Camden</b> <br>
 <br> <input type=submit value=go> </form>
 
 <br><br>
-<g:textArea readonly="readonly" name="something" id="1" style="width: 90%; padding: 5px; margin: 20px;">
 
-
-    <form method=post action=example5>
-<g:selectPrimary id="MyContinent2" name="MyContinent2"
+<pre>
+&lt;form method=post action=example5&gt;
+&lt;g:selectPrimary id="MyContinent2" name="MyContinent2"
     domain='ajaxdependancyselectexample.MyContinent'
     searchField='continentName'
     collectField='id'
@@ -100,9 +99,9 @@ Try Europe United Kingdom and London and Camden</b> <br>
     collectField2='id'
     noSelection="['': 'Please choose Continent']"
     setId="MyCountry11"
-    value=''/>
+    value=''/&gt;
 
-<g:selectSecondary id="MyCountry11" name="MyCountry11"
+&lt;g:selectSecondary id="MyCountry11" name="MyCountry11"
     domain2='ajaxdependancyselectexample.MyCity'
     bindid="mycountry.id"
     searchField2='cityName'
@@ -110,9 +109,9 @@ Try Europe United Kingdom and London and Camden</b> <br>
 
     noSelection="['': 'Please choose Continent']"
     setId="MyCity11"
-    value=''/>
+    value=''/&gt;
 
-<g:selectSecondaryNR id="MyCity11" name="MyCity11"
+&lt;g:selectSecondaryNR id="MyCity11" name="MyCity11"
 	domain='ajaxdependancyselectexample.MyCity'
     bindid="myborough"
 	searchField='cityName'
@@ -124,11 +123,11 @@ Try Europe United Kingdom and London and Camden</b> <br>
      
     noSelection="['': 'Please choose City']"
     setId="MyBorough11"
-    value=''/>
+    value=''/&gt;
 
 
-<br>
-<g:selectSecondary id="MyBorough11" name="MyBorough11"
+&lt;br&gt;
+&lt;g:selectSecondary id="MyBorough11" name="MyBorough11"
     domain2='ajaxdependancyselectexample.Streets'
     bindid="localborough.id"
     searchField2='streetName'
@@ -136,18 +135,17 @@ Try Europe United Kingdom and London and Camden</b> <br>
    
     noSelection="['': 'Please choose Borough']"
     setId="MyRoad22"
-    value=''/>
+    value=''/&gt;
     
-     <g:select name="MyRoad22" id="MyRoad22"  
+     &lt;g:select name="MyRoad22" id="MyRoad22"  
     optionKey="id" optionValue="name" 
-    from="[]" required="required" noSelection="['': 'Please choose Borough']" />
+    from="[]" required="required" noSelection="['': 'Please choose Borough']" /&gt;
     
     
     
    
-<br> <input type=submit value=go> </form>
-
-</g:textArea>
+&lt;br&gt; &lt;input type=submit value=go&gt; &lt;/form&gt;
+</pre>
 
 	</body>
 	</html>

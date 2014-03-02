@@ -55,10 +55,13 @@ It will only list Countries starting with F
 
 <br><br>
 
-<g:textArea readonly="readonly" name="something" id="1" style="width: 90%; padding: 5px; margin: 20px;">
-<form method=post action=example5>
-<label>Continent:</label>
-<g:selectPrimary id="MyContinent2" name="MyContinent2"
+
+<pre>
+
+
+&lt;form method=post action=example5&gt;
+&lt;label&gt;Continent:&lt;/label&gt;
+&lt;g:selectPrimary id="MyContinent2" name="MyContinent2"
     domain="ajaxdependancyselectexample.MyContinent"
     searchField="continentName"
     collectField="id"
@@ -67,14 +70,13 @@ It will only list Countries starting with F
     action="selectCountries"
     noSelection="['': 'Please choose Continent']" 
     setId="MyCountry121"
-    value=""/>
+    value=""/&gt;
     
- <g:select name="MyCountry" id="MyCountry121"  from="[]" required="required" noSelection="['': 'Please choose Continent']" />
+ &lt;g:select name="MyCountry" id="MyCountry121"  from="[]" required="required" noSelection="['': 'Please choose Continent']" /&gt;
 
-<input type=submit value=go> </form>
+&lt;input type=submit value=go&gt; &lt;/form&gt;
 
-</g:textArea>
-
+</pre>
 	</body>
 	</html>
 	
