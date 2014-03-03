@@ -24,7 +24,7 @@ A simple two tier relationship requires a call to selectPrimary with result retu
 
 <form method=post action=example5>
 	
-	<g:selectPrimary id="MyContinent1" name="MyContinent1"
+	<g:selectPrimary id="MyCountry1" name="MyCountry1"
         domain='ajaxdependancyselectexample.MyCountry'
         searchField='countryName'
         collectField='id'
@@ -140,7 +140,7 @@ A simple two tier relationship requires a call to selectPrimary with result retu
 
 
     <g:select name="MyShop12" id="MyShop12"  
-    optionKey="id" optionValue="name" 
+    optionKey="id" optionValue="shopName" 
     from="[]" required="required" noSelection="['': 'Please choose City']" 
     />
     

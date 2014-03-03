@@ -13,11 +13,14 @@ class MyContinentController {
     }
 	def example() {}
 	def example2() {}
+	def example3() {}
 	def norefselectionext() {}
+	def multidomainexample() {}
 	def norefselection() {}
 	def customexample() {}
 	def selectautoComplete() {}
 	def filteringExamples() {}
+	def filteringExample1() {}
 	def noRefAutoComplete() {}
 	def selectPrimaryNRExample() {}
 	def selectPrimaryNRFiltering() {}
