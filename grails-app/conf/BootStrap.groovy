@@ -1,6 +1,7 @@
 
 import grails.transaction.Transactional
 import ajaxdependancyselectexample.Departments
+import ajaxdependancyselectexample.Documents
 import ajaxdependancyselectexample.Employee
 import ajaxdependancyselectexample.MyCity
 import ajaxdependancyselectexample.MyContinent
@@ -15,11 +16,27 @@ class BootStrap {
 		def d1=Departments.findOrSaveWhere(name: 'HR')
 		def d2=Departments.findOrSaveWhere(name: 'Finance')
 		
+		
 		Employee.findOrSaveWhere(department:d1, name:'Alison')
 		Employee.findOrSaveWhere(department:d1, name:'Sarah')
 		Employee.findOrSaveWhere(department:d2, name:'Tim')
 		Employee.findOrSaveWhere(department:d2, name:'Dave')
 		Employee.findOrSaveWhere(department:d2, name:'Jim')
+		
+		Documents.findOrSaveWhere(department:d1, name:'Document1.doc')
+		Documents.findOrSaveWhere(department:d1, name:'LastYearReport.doc')
+		Documents.findOrSaveWhere(department:d2, name:'christmast-report.doc')
+		Documents.findOrSaveWhere(department:d2, name:'timsxml.xml')
+		Documents.findOrSaveWhere(department:d2, name:'jack.doc')
+		
+		//  London and Oxford now have the following boroughs
+		def dgg1=d1.addToOffices(name:'Reading').save(flush:true)
+		
+		def dgg2=d1.addToOffices(name:'Hull').save(flush:true)
+		
+		def dgg3=d2.addToOffices(name:'Kent').save(flush:true)
+		
+		def dgg4=d2.addToOffices(name:'Wales').save(flush:true)
 		
 		
 		// Create continents 
@@ -65,10 +82,10 @@ class BootStrap {
 	
 	
 
-		def sc1 = MyShops.findOrSaveWhere(mycity: c1, shopName:'Abc')
-		def sc2 = MyShops.findOrSaveWhere(mycity: c1, shopName:'Cat')
-		def sc3 = MyShops.findOrSaveWhere(mycity: c2, shopName:'Gigo')
-		def sc4 = MyShops.findOrSaveWhere(mycity: c2, shopName:'DayLight')
+		def sc1 = MyShops.findOrSaveWhere(mycity: cc1, shopName:'Abc')
+		def sc2 = MyShops.findOrSaveWhere(mycity: cc1, shopName:'Cat')
+		def sc3 = MyShops.findOrSaveWhere(mycity: cc2, shopName:'Gigo')
+		def sc4 = MyShops.findOrSaveWhere(mycity: cc2, shopName:'DayLight')
 		// Fill Streets where Boroughs and Streets have a map relationship
 		
 		Streets.findOrSaveWhere(localborough: gg1.myborough.toList()[0], streetName: 'Vauxhall Road')

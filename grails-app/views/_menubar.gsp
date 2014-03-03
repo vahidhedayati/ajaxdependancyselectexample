@@ -9,7 +9,11 @@
 			<li><g:link class="list" controller="MyContinent" action="selectautoComplete"><g:message code="select+AutoComplete" args="[entityName]" /></g:link></li>
 			<li><g:link class="list" controller="MyContinent" action="filteringExamples"><g:message code="filtering" args="[entityName]" /></g:link></li>
 			<li><g:link class="list" controller="MyContinent" action="noRefAutoComplete"><g:message code="No Ref Auto Complete" args="[entityName]" /></g:link></li>
-			<li><g:link class="list" controller="MyContinent" action="selectPrimaryNRExample"><g:message code="selectPrimary No Ref" args="[entityName]" /></g:link></li>
+			<li><g:link class="list" controller="MyContinent" action="selectPrimaryNRExample"><g:message code="selectPrimaryNRExample" args="[entityName]" /></g:link></li>
+			<li><g:link class="list" controller="MyContinent" action="selectPrimaryNRFiltering"><g:message code="selectPrimaryNRFiltering" args="[entityName]" /></g:link></li>
+			<li><g:link class="list" controller="MyContinent" action="norefselectSecondaryFiltering"><g:message code="norefselectSecondaryFiltering" args="[entityName]" /></g:link></li>
+			<li><g:link class="list" controller="MyContinent" action="norefselectSecondaryFilteringFixed"><g:message code="norefselectSecondaryFiltering Fixed Term lookup" args="[entityName]" /></g:link></li>
+		
 			
 			</ul>
 </div>		

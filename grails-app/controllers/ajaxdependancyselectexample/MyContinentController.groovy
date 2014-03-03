@@ -20,6 +20,10 @@ class MyContinentController {
 	def filteringExamples() {}
 	def noRefAutoComplete() {}
 	def selectPrimaryNRExample() {}
+	def selectPrimaryNRFiltering() {}
+	def norefselectSecondaryFilteringFixed() { }
+
+	def norefselectSecondaryFiltering() { }
 	def example5() {render (view: 'example5', model: [params: params])}
 	
 	def selectCountries() {
