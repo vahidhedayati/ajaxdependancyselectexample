@@ -72,7 +72,7 @@ grails.project.dependency.resolution = {
 		
 		
 		// Uncomment this to use live plugin
-		//compile ":ajaxdependancyselection:0.27"
+		compile ":ajaxdependancyselection:0.33"
     }
 }
-grails.plugin.location.'ajaxdependancyselection' = "../ajaxdependancyselection"
+//grails.plugin.location.'ajaxdependancyselection' = "../ajaxdependancyselection"
