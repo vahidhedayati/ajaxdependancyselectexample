@@ -1,5 +1,6 @@
 
 import grails.transaction.Transactional
+import ajaxdependancyselectexample.Computers
 import ajaxdependancyselectexample.Departments
 import ajaxdependancyselectexample.Documents
 import ajaxdependancyselectexample.Employee
@@ -7,7 +8,9 @@ import ajaxdependancyselectexample.MyCity
 import ajaxdependancyselectexample.MyContinent
 import ajaxdependancyselectexample.MyCountry
 import ajaxdependancyselectexample.MyShops
+import ajaxdependancyselectexample.Os
 import ajaxdependancyselectexample.Streets
+import ajaxdependancyselectexample.Users
 @Transactional
 class BootStrap {
 
@@ -37,6 +40,26 @@ class BootStrap {
 		def dgg3=d2.addToOffices(name:'Kent').save(flush:true)
 		
 		def dgg4=d2.addToOffices(name:'Wales').save(flush:true)
+		
+		def ccc1=Computers.findOrSaveWhere(department:d1, pcName:'AXM-tqw')
+		Computers.findOrSaveWhere(department:d1, pcName:'BXM-lpt')
+		Computers.findOrSaveWhere(department:d1, pcName:'SXM-abf')
+		def ccc2=Computers.findOrSaveWhere(department:d2, pcName:'gjb-aabf')
+		Computers.findOrSaveWhere(department:d2, pcName:'otr-aaf')
+		Computers.findOrSaveWhere(department:d2, pcName:'por-adf')
+		
+		Os.findOrSaveWhere(computers:ccc1, osName:'Windows')
+		Os.findOrSaveWhere(computers:ccc1, osName:'Mac')
+		Os.findOrSaveWhere(computers:ccc2, osName:'Redhat')
+		Os.findOrSaveWhere(computers:ccc2, osName:'Centos')
+				
+		Users.findOrSaveWhere(computers:ccc2, userName:'Gill')
+		Users.findOrSaveWhere(computers:ccc2, userName:'Kevin')
+		Users.findOrSaveWhere(computers:ccc2, userName:'Sam')
+		
+		Users.findOrSaveWhere(computers:ccc1, userName:'Joe')
+		Users.findOrSaveWhere(computers:ccc1, userName:'Mark')
+		Users.findOrSaveWhere(computers:ccc1, userName:'Jackie')
 		
 		
 		// Create continents 
