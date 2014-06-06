@@ -11,6 +11,9 @@ import ajaxdependancyselectexample.MyShops
 import ajaxdependancyselectexample.Os
 import ajaxdependancyselectexample.Streets
 import ajaxdependancyselectexample.Users
+import dms.nexusglobal.Subtag
+import dms.nexusglobal.Tag
+import dms.nexusglobal.Template
 @Transactional
 class BootStrap {
 
@@ -18,6 +21,28 @@ class BootStrap {
 		
 		def d1=Departments.findOrSaveWhere(name: 'HR')
 		def d2=Departments.findOrSaveWhere(name: 'Finance')
+		
+		def tt1=Template.findOrSaveWhere(templateName: 'aaaa')
+		def tt2=Template.findOrSaveWhere(templateName: 'bbb')
+		
+		def ta1=Tag.findOrSaveWhere(template: tt1, tagName: 'cccc')
+		def ta2=Tag.findOrSaveWhere(template: tt1, tagName: 'dddd')
+		def ta3=Tag.findOrSaveWhere(template: tt2, tagName: 'eee')
+		def ta4=Tag.findOrSaveWhere(template: tt2, tagName: 'fff')
+		Subtag.findOrSaveWhere(tag: ta1, subtagName: 'aaa')
+		Subtag.findOrSaveWhere(tag: ta1, subtagName: 'bbbb')
+		Subtag.findOrSaveWhere(tag: ta1, subtagName: 'ccc')
+		Subtag.findOrSaveWhere(tag: ta2, subtagName: 'avavaa')
+		Subtag.findOrSaveWhere(tag: ta2, subtagName: 'aggddb')
+		Subtag.findOrSaveWhere(tag: ta2, subtagName: 'hjytd')
+		Subtag.findOrSaveWhere(tag: ta3, subtagName: 'lkhd')
+		Subtag.findOrSaveWhere(tag: ta3, subtagName: 'afaa')
+		Subtag.findOrSaveWhere(tag: ta3, subtagName: 'vvafr')
+		Subtag.findOrSaveWhere(tag: ta4, subtagName: 'affaa')
+		Subtag.findOrSaveWhere(tag: ta4, subtagName: 'mfda')
+		Subtag.findOrSaveWhere(tag: ta4, subtagName: 'aetvs')
+		
+		
 		
 		
 		Employee.findOrSaveWhere(department:d1, name:'Alison')
