@@ -1,12 +1,8 @@
 ajaxdependancyselectexample
 ===========================
 
-example grails project using ajaxdependancyselection plugin
+Example grails project using [grails ajaxdependancyselection plugin](http://grails.org/plugin/ajaxdependancyselection), [source can be found here](https://github.com/vahidhedayati/ajaxdependancyselection). [Issues can be reported here](https://github.com/vahidhedayati/ajaxdependancyselection/issues)
 
-
-This example grails project uses :
-
-https://github.com/vahidhedayati/ajaxdependancyselection
 
 #### Updated to work with ajaxdependancyselection 0.37
 
@@ -18,11 +14,11 @@ https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-
 
 
 ## General note over naming conventions.
-In the examples provided domainClasses has been defined as countryName cityName and so forth, this was really an example to show it can be any naming convention besides the standard id, name column naming convention. Feel free to name things as you desire i.e. this is not a requirement of the plugin.
-
-Feel free to reuse as requred..
+In the examples provided domainClasses has been defined as countryName cityName and so forth, this was really an example to show it can be any naming convention besides the standard id, name column naming convention. Feel free to name things as you desire i.e. this is not a requirement of the plugin. Feel free to reuse as requred..
 
 
+
+## Running project
 To run this project you will need grails 2.3.4:
 
 from command line: (Linux)
@@ -60,8 +56,6 @@ Download this app and run:
 
     grails run-app
    
-
-
 
 
 All the examples are here:
