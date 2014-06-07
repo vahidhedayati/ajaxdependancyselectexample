@@ -8,7 +8,7 @@ This example grails project uses :
 
 https://github.com/vahidhedayati/ajaxdependancyselection
 
-# Updated to work with ajaxdependancyselection 0.37
+#### Updated to work with ajaxdependancyselection 0.37
 
 
 I have added extra options to the main page to give access to other examples and domain classes if new records are required for the test.
