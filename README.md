@@ -8,7 +8,7 @@ This example grails project uses :
 
 https://github.com/vahidhedayati/ajaxdependancyselection
 
-# Updated to work with ajaxdependancyselection 0.34
+# Updated to work with ajaxdependancyselection 0.37
 
 
 I have added extra options to the main page to give access to other examples and domain classes if new records are required for the test.
@@ -17,6 +17,8 @@ All the select examples complete for UK, London and from there on everything has
 https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/conf/BootStrap.groovy
 
 
+## General note over naming conventions.
+In the examples provided domainClasses has been defined as countryName cityName and so forth, this was really an example to show it can be any naming convention besides the standard id, name column naming convention. Feel free to name things as you desire i.e. this is not a requirement of the plugin.
 
 Feel free to reuse as requred..
 
@@ -46,13 +48,13 @@ so please ensure you point it to jdk rather than jre
 
 Unsure but I have multiple grails installed on my desktop so to ensure it is the right version run:
 
-    	alias grails=/home/user/Downloads/springsource/grails-2.3.4/bin/grails
-or:
+    	alias grails=/home/user//grails-2.3.7/bin/grails
+and if you wanted:
 
-	export GRAILS_HOME=/home/user/Downloads/springsource/grails-2.3.4
+	export GRAILS_HOME=/home/user//grails-2.3.7/
 	
 
-This is my path to grails 2.3.4 binary file
+This is my path to grails 2.3.7 binary file
 
 Download this app and run:
 
