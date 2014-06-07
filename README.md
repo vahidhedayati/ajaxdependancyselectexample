@@ -14,7 +14,7 @@ All the select examples complete for UK, London and from there on everything has
 
 
 ## General note over naming conventions.
-In the examples provided domainClasses has been defined as countryName cityName and so forth, this was really an example to show it can be any naming convention besides the standard id, name column naming convention. Feel free to name things as you desire i.e. this is not a requirement of the plugin. Feel free to reuse as requred..
+In the examples provided domainClasses has been defined as countryName cityName and so forth, this was really an example to show it can be any naming convention besides the standard id, name column naming convention. Feel free to name things as you desire i.e. this is not a requirement of the plugin.
 
 
 
