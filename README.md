@@ -10,7 +10,7 @@ Example grails project using [grails ajaxdependancyselection plugin](http://grai
 I have added extra options to the main page to give access to other examples and domain classes if new records are required for the test.
 
 All the select examples complete for UK, London and from there on everything has a value, please refer to the BootStrap.groovy where the db is preloaded with giberish
-https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/conf/BootStrap.groovy
+[BootStrap.groovy](https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/conf/BootStrap.groovy)
 
 
 ## General note over naming conventions.
@@ -60,26 +60,26 @@ Download this app and run:
 
 All the examples are here:
 
-https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/views/myContinent/example.gsp
+[example](https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/views/myContinent/example.gsp)
 
-https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/views/myContinent/norefselection.gsp
+[noRef](https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/views/myContinent/norefselection.gsp)
 
-https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/views/myContinent/norefselectionext.gsp
+[noRefExtended](https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/views/myContinent/norefselectionext.gsp)
 
 
 
 Project changes made to make this work:
 
-Added to: https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/conf/BuildConfig.groovy
+Added to: [BuildConfig](https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/conf/BuildConfig.groovy)
 
 	// EXTRAS ADDED TO MAKE THIS EXAMPLE PROJECT WORK
-    compile ":ajaxdependancyselection:0.34"
+    compile ":ajaxdependancyselection:0.37"
    	compile ":jquery-ui:1.10.3"
 
 
 
 
-Added to: https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/views/layouts/main.gsp
+Added to: [main.gsp](https://github.com/vahidhedayati/ajaxdependancyselectexample/blob/master/grails-app/views/layouts/main.gsp)
 
 
     <g:javascript library="jquery-ui"/>
