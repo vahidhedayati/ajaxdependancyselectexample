@@ -36,7 +36,9 @@ A simple two tier relationship requires a call to selectPrimary with result retu
 
         noSelection="['': 'Please choose Country']" 
         setId="MyCity1"
-        value=''/>
+        value='1'
+        secondaryValue='2'
+        />
 
 <g:select name="MyCity1" id="MyCity1" optionKey="id" optionValue="cityName" from="[]" required="required" noSelection="['': 'Please choose Country']" />
 <input type=submit value=go>  
