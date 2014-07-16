@@ -79,7 +79,7 @@ grails.project.dependency.resolution = {
         //compile ":coffee-asset-pipeline:1.5.0"
         //compile ":handlebars-asset-pipeline:1.3.0.1"
 		compile ":jquery-ui:1.10.3"
-		//compile ":ajaxdependancyselection:0.37"
+	compile ":ajaxdependancyselection:0.40"
     }
 }
-grails.plugin.location.'ajaxdependancyselection' = "../ajaxdependancyselection"
+//grails.plugin.location.'ajaxdependancyselection' = "../ajaxdependancyselection"
