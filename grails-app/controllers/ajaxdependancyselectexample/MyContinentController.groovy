@@ -26,6 +26,7 @@ class MyContinentController {
 	def selectauto3() {}
 	def selectPrimaryNRExample() {}
 	def selectPrimaryNRFiltering() {}
+	def testedit() { }
 	def norefselectSecondaryFilteringFixed() { }
 
 	def norefselectSecondaryFiltering() { }

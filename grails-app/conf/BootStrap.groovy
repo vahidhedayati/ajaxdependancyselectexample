@@ -106,8 +106,8 @@ class BootStrap {
 		def cc2=MyCity.findOrSaveWhere(mycountry:c1,cityName:'Oxford')
 		
 		MyCity.findOrSaveWhere(mycountry:c2,cityName:'Paris')
-		MyCity.findOrSaveWhere(mycountry:c2,cityName:'Lyon')
-		MyCity.findOrSaveWhere(mycountry:c2,cityName:'Nice')
+		def cc5=MyCity.findOrSaveWhere(mycountry:c2,cityName:'Lyon')
+		def cc6=MyCity.findOrSaveWhere(mycountry:c2,cityName:'Nice')
    
 		MyCity.findOrSaveWhere(mycountry:c3,cityName:'Beijing')
 		MyCity.findOrSaveWhere(mycountry:c3,cityName:'Shanghai')
@@ -134,6 +134,16 @@ class BootStrap {
 		def sc2 = MyShops.findOrSaveWhere(mycity: cc1, shopName:'Cat')
 		def sc3 = MyShops.findOrSaveWhere(mycity: cc2, shopName:'Gigo')
 		def sc4 = MyShops.findOrSaveWhere(mycity: cc2, shopName:'DayLight')
+		
+		
+		
+		def sc5 = MyShops.findOrSaveWhere(mycity: cc6, shopName:'Nice shop1')
+		def sc51 = MyShops.findOrSaveWhere(mycity: cc6, shopName:'Nice shop2')
+		
+		def sc6 = MyShops.findOrSaveWhere(mycity: cc5, shopName:'Lyon Shopping day out1')
+		def sc61 = MyShops.findOrSaveWhere(mycity: cc5, shopName:'Lyon Shopping day out2')
+		def sc63 = MyShops.findOrSaveWhere(mycity: cc5, shopName:'Lyon Shopping day out3')
+		def sc53 = MyShops.findOrSaveWhere(mycity: cc6, shopName:'Nice shopping day out in nice')
 		// Fill Streets where Boroughs and Streets have a map relationship
 		
 		Streets.findOrSaveWhere(localborough: gg1.myborough.toList()[0], streetName: 'Vauxhall Road')
