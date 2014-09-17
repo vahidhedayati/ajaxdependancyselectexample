@@ -15,6 +15,8 @@ class MyCountryController {
         respond MyCountry.list(params), model:[myCountryInstanceCount: MyCountry.count()]
     }
 
+
+	
     def show(MyCountry myCountryInstance) {
         respond myCountryInstance
     }

@@ -11,6 +11,9 @@ class MyContinentController {
     def index() {
         redirect(action: "list", params: params)
     }
+	
+
+	
 	def example() {}
 	def example2() {}
 	def example3() {}
@@ -18,6 +21,7 @@ class MyContinentController {
 	def multidomainexample() {}
 	def norefselection() {}
 	def customexample() {}
+	def customexample2() {}
 	def selectautoComplete() {}
 	def filteringExamples() {}
 	def filteringExample1() {}
@@ -31,6 +35,24 @@ class MyContinentController {
 
 	def norefselectSecondaryFiltering() { }
 	def example5() {render (view: 'example5', model: [params: params])}
+	
+	def listCountry() {
+		
+		def primarySelectList = []
+		def primaryMap = [:]
+		primaryMap.put('id', '')
+		primaryMap.put('name', 'Select Country')
+		primarySelectList.add(primaryMap)
+		MyContinent.get(params.id).mycountry.each {
+			primaryMap = [:]
+			primaryMap.put('id', it.id)
+			primaryMap.put('name', it.countryName)
+			primarySelectList.add(primaryMap)
+		}
+			render primarySelectList as JSON
+	}
+	
+	
 	
 	def selectCountries() {
 		if (params.id) {
