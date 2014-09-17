@@ -17,6 +17,7 @@ class MyContinentController {
 	def example() {}
 	def example2() {}
 	def example3() {}
+	def example4() {}
 	def norefselectionext() {}
 	def multidomainexample() {}
 	def norefselection() {}
