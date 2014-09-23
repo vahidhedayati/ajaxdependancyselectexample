@@ -18,6 +18,13 @@ class MyContinentController {
 	def example2() {}
 	def example3() {}
 	def example4() {}
+	def example6()  {
+		def primaryList=MyContinent.list()
+		
+		[primaryList:primaryList]
+		
+		
+	}
 	def norefselectionext() {}
 	def multidomainexample() {}
 	def norefselection() {}
