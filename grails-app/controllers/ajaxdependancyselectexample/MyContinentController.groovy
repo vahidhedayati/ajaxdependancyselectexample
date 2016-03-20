@@ -42,7 +42,15 @@ class MyContinentController {
 	def norefselectSecondaryFilteringFixed() { }
 
 	def norefselectSecondaryFiltering() { }
-	def example5() {render (view: 'example5', model: [params: params])}
+	def example5() {
+		println "--> params ${params}"
+
+		MyCountry country=MyCountry.get(params.mycountry.id as Long)
+		MyCity city=MyCity.get(params.mycity.id as long)
+		MyContinent continent=MyContinent.get(params.mycontinent.id as Long)
+		render (view: 'example5', model: [params: params,country:country,city:city,continent:continent])
+
+}
 	
 	def listCountry() {
 		

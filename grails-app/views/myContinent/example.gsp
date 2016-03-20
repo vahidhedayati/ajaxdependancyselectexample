@@ -75,6 +75,7 @@ A simple two tier relationship requires a call to selectPrimary with result retu
     <br><br>
     
 <h1>Example 2: Triple Select conditions</h1><br><br>
+<h1>This binds Contient to continent object by using variable name of mycontinent.id and my mycountry.id and mycity.id have a look at output sceen when posted</h1>
     
  A nested relationship of hasMany and fully dependent relationship with belongsTo in 3<br>    
     
@@ -82,7 +83,9 @@ A simple two tier relationship requires a call to selectPrimary with result retu
  <form method=post action=example5>
     
     
-<g:selectPrimary id="MyContinent2" name="MyContinent2"
+<g:selectPrimary 
+id="MyContinent2" 
+name="mycontinent.id"
     domain='ajaxdependancyselectexample.MyContinent'
     searchField='continentName'
     collectField='id'
@@ -104,7 +107,9 @@ A simple two tier relationship requires a call to selectPrimary with result retu
 
 
 
-<g:selectSecondary id="MyCountry11" name="MyCountry11"
+<g:selectSecondary
+ id="MyCountry11"
+ name="mycountry.id"
 	domain2='ajaxdependancyselectexample.MyCity'
     bindid="mycountry.id"
     searchField2='cityName'
@@ -123,7 +128,9 @@ A simple two tier relationship requires a call to selectPrimary with result retu
 
 
 
-    <g:selectSecondary name="MyCity11" id="MyCity11"  
+    <g:selectSecondary 
+	id="MyCity11"  
+	name="mycity.id" 
     optionKey="id" optionValue="name"
     
     
