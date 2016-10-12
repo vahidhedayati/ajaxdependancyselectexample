@@ -1,6 +1,7 @@
 package ajaxdependancyselectexample
 
 import grails.converters.JSON
+import grails.validation.Validateable
 
 import org.springframework.dao.DataIntegrityViolationException
 
@@ -45,12 +46,27 @@ class MyContinentController {
 	def example5() {
 		println "--> params ${params}"
 
-		MyCountry country=MyCountry.get(params.mycountry.id as Long)
-		MyCity city=MyCity.get(params.mycity.id as long)
-		MyContinent continent=MyContinent.get(params.mycontinent.id as Long)
-		render (view: 'example5', model: [params: params,country:country,city:city,continent:continent])
+	//	MyCountry country=MyCountry.get(params.mycountry.id as Long)
+	//	MyCity city=MyCity.get(params.mycity.id as long)
+	//	MyContinent continent=MyContinent.get(params.mycontinent.id as Long)
+		render (view: 'example5', model: [params: params]) //,country:country,city:city,continent:continent])
 
-}
+	}
+	
+	def beanExample(MyBean bean) {
+		println "-- my values are ${bean.mycountry} vs ${bean.mycity} ${bean.mycontinent}"
+		println "-- my values are ${bean.mycountry.getClass()} vs ${bean.mycity.getClass()} ${bean.mycontinent.getClass()}"
+		
+		render (view: 'example5', model: [params: params, country:bean.mycountry,city:bean.mycity,continent:bean.mycontinent])
+	}
+	
+	def beanExample2(MyTestBean bean) {
+		println "-- my values are ${bean.mycountry} vs ${bean.mycity} ${bean.mycontinent}"
+		println "-- my values are ${bean.mycountry.getClass()} vs ${bean.mycity.getClass()} ${bean.mycontinent.getClass()}"
+		
+		render (view: 'example5', model: [params: params, country:bean.mycountry,city:bean.mycity,continent:bean.mycontinent])
+	}
+	
 	
 	def listCountry() {
 		
@@ -183,4 +199,10 @@ class MyContinentController {
             redirect(action: "show", id: id)
         }
     }
+}
+@Validateable
+class MyBean{
+	MyCountry mycountry
+	MyCity mycity
+	MyContinent mycontinent
 }

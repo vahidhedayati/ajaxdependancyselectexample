@@ -22,7 +22,7 @@
 A simple two tier relationship requires a call to selectPrimary with result returned to [] of MyCity1 normal select box<br><br>
 
 
-<form method=post action=example5>
+<g:form  action="example5">
 	
 	<g:selectPrimary id="MyCountry1" name="MyCountry1"
         domain='ajaxdependancyselectexample.MyCountry'
@@ -42,7 +42,7 @@ A simple two tier relationship requires a call to selectPrimary with result retu
 
 <g:select name="MyCity1" id="MyCity1" optionKey="id" optionValue="cityName" from="[]" required="required" noSelection="['': 'Please choose Country']" />
 <input type=submit value=go>  
-    </form>
+    </g:form>
 
     
     
@@ -80,7 +80,7 @@ A simple two tier relationship requires a call to selectPrimary with result retu
  A nested relationship of hasMany and fully dependent relationship with belongsTo in 3<br>    
     
 
- <form method=post action=example5>
+ <g:form action="beanExample">
     
     
 <g:selectPrimary 
@@ -155,9 +155,88 @@ name="mycontinent.id"
     
 
     <input type=submit value=go>  
-    </form>
+    </g:form>
 
   <br><br>
+  
+  
+  
+ <g:form action="beanExample2">
+    
+    
+<g:selectPrimary 
+id="MyContinent2a" 
+name="mycontinent.id"
+    domain='ajaxdependancyselectexample.MyContinent'
+    searchField='continentName'
+    collectField='id'
+    
+    domain2='ajaxdependancyselectexample.MyCountry'
+    bindid="mycontinent.id"
+    searchField2='countryName'
+    appendValue=''
+    appendName='Updated'
+    collectField2='id'
+
+    hidden="hiddenNew"
+    noSelection="['': 'Please choose Continent']" 
+    setId="MyCountry11a"
+    value="${params.MyContinent2}"/>
+
+
+
+
+
+
+<g:selectSecondary
+ id="MyCountry11a"
+ name="mycountry.id"
+	domain2='ajaxdependancyselectexample.MyCity'
+    bindid="mycountry.id"
+    searchField2='cityName'
+    collectField2='id'
+    
+    
+     appendValue=''
+     appendName='Updated'
+    
+    
+    noSelection="['': 'Please choose Continent']" 
+    setId="MyCity11a"
+    value="${params.MyCountry11}"/>
+
+
+
+
+
+    <g:selectSecondary 
+	id="MyCity11a"  
+	name="mycity.id" 
+    optionKey="id" optionValue="name"
+    
+    
+    domain2='ajaxdependancyselectexample.MyShops'
+    bindid="mycity.id"
+    searchField2='shopName'
+    collectField2='id'
+    appendValue=''
+    appendName='Updated'
+   
+    
+    setId="MyShop12a"
+	noSelection="['': 'Please choose Country 1111']" 
+	/>
+
+
+
+    <g:select name="MyShop12a" id="MyShop12a"  
+    optionKey="id" optionValue="shopName" 
+    from="[]" required="required" noSelection="['': 'Please choose City']" 
+    />
+    
+
+    <input type=submit value=go>  
+    </g:form>
   
   
   
